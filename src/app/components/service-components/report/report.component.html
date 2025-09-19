@@ -1,0 +1,34 @@
+<div class="section app-report">
+  <div class="app-theme-container">
+    <div class="app-theme-stars"></div>
+    <div class="cosmic-particles">
+      <div *ngFor="let particle of particles; let i = index" class="particle" [style.left.%]="particle.x"
+        [style.top.%]="particle.y" [style.animation-delay]="particle.delay + 's'">
+      </div>
+    </div>
+
+
+    @if (loader) {
+      <app-loader [isLoading]="loader"></app-loader>
+    }
+    @if (!loader) {
+    <!-- <div class="min-h-screen p-4"> -->
+    <div class="min-h-screen py-4">
+      <!-- <div class="min-h-screen bg-gradient-to-br from-indigo-100 to-white p-4"> -->
+      <!-- <h1 class="text-3xl font-bold text-center text-indigo-700 mt-4">🔢 Numerology Insights</h1> -->
+
+
+      <app-input-form *ngIf="!numerologyResult" (calculationDone)="handleCalculation($event)"></app-input-form>
+      <app-services-grid *ngIf="numerologyResult && requestDataType == null"
+        (requestDataType)="handleRequestedData($event)"></app-services-grid>
+      <app-result *ngIf="numerologyResult && requestDataType != null" [requestDataType]="requestDataType"
+        (requestDataInResult)="handleRequestedData($event)" [result]="numerologyResult"></app-result>
+      <!-- <app-result-display *ngIf="numerologyResult" [result]="numerologyResult"></app-result-display> -->
+
+      <div *ngIf="numerologyResult" class="text-center mt-4">
+        <button class="back-btn mx-auto text-white" (click)="reset()">🔁 Start Over</button>
+      </div>
+    </div>
+    }
+  </div>
+</div>

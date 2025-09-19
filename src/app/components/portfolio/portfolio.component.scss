@@ -1,0 +1,226 @@
+
+    .portfolio {
+      background: var(--white);
+    }
+    
+    .portfolio-filters {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 12px 24px;
+      background: transparent;
+      border: 2px solid var(--primary-gold);
+      color: var(--primary-gold);
+      border-radius: 25px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary-gold);
+      color: var(--white);
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+    
+    .portfolio-item {
+      overflow: hidden;
+    }
+    
+    .portfolio-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .portfolio-item:hover .portfolio-image img {
+      transform: scale(1.1);
+    }
+    
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(30, 58, 138, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    
+    .portfolio-content {
+      text-align: center;
+      color: var(--white);
+      padding: 24px;
+    }
+    
+    .portfolio-content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .project-details {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    
+    .project-type,
+    .project-location {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+    }
+    
+    .portfolio-info {
+      padding: 24px;
+    }
+    
+    .portfolio-info h4 {
+      color: var(--deep-blue);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .portfolio-info p {
+      color: var(--dark-gray);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    
+    .project-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .result {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--light-gray);
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.875rem;
+    }
+    
+    .result-icon {
+      color: var(--primary-green);
+    }
+    
+    .case-studies h3 {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--deep-blue);
+      margin-bottom: 40px;
+    }
+    
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 32px;
+    }
+    
+    .case-study {
+      padding: 32px;
+    }
+    
+    .case-study-content h4 {
+      color: var(--deep-blue);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .case-problem,
+    .case-solution,
+    .case-result {
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    
+    .case-problem {
+      color: #dc2626;
+    }
+    
+    .case-solution {
+      color: var(--primary-green);
+    }
+    
+    .case-result {
+      color: var(--deep-blue);
+    }
+    
+    .case-metrics {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+    }
+    
+    .metric {
+      text-align: center;
+    }
+    
+    .metric-value {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-gold);
+    }
+    
+    .metric-label {
+      font-size: 0.875rem;
+      color: var(--dark-gray);
+    }
+    
+    @media (max-width: 768px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .case-study-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .case-metrics {
+        gap: 16px;
+      }
+      
+      .project-details {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }

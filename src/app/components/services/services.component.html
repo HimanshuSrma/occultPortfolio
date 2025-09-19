@@ -1,0 +1,35 @@
+
+    <section id="services" class="section services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">
+          Comprehensive Vastu solutions tailored to your specific needs and requirements
+        </p>
+        
+        <div class="services-grid">
+          <div class="service-card card" *ngFor="let service of services">
+            <div class="service-icon">{{ service.icon }}</div>
+            <h3 class="service-title">{{ service.title }}</h3>
+            <p class="service-description">{{ service.description }}</p>
+            <ul class="service-features">
+              <li *ngFor="let feature of service.features">{{ feature }}</li>
+            </ul>
+            <!-- <div class="service-price">{{ service.price }}</div> -->
+            <a href="#contact" class="btn btn-primary">Get Quote</a>
+          </div>
+        </div>
+        
+        <div class="additional-services">
+          <h3>Additional Services</h3>
+          <div class="additional-grid">
+            <div class="additional-item" *ngFor="let item of additionalServices">
+              <div class="additional-icon">{{ item.icon }}</div>
+              <div class="additional-content">
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

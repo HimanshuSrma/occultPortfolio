@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+    <!-- <div class="stars"></div> -->
+    <div class="container">
+        <header class="hero-section fade-in">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line text-white">Unlock Your</span>
+                    <span class="title-line gradient-text">Cosmic Destiny</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Discover the ancient wisdom of numbers and transform your life through personalized numerological insights
+                </p>
+            </div>
+        </header>
+
+        <main class="services-section">
+            <div class="services-grid">
+                <div *ngFor="let service of services; let i = index" class="service-card"
+                    [style.animation-delay]="(i * 0.15) + 's'" (click)="navigateToService(service.id)"
+                    [style.background]="service.gradient">
+
+                    <div class="card-background"></div>
+                    <div class="card-content">
+                        <div class="card-icon">{{ service.icon }}</div>
+                        <h3 class="card-title">{{ service.title }}</h3>
+                        <p class="card-description">{{ service.description }}</p>
+
+                        <div class="card-footer">
+                            <span class="explore-text">Explore Now</span>
+                            <div class="arrow-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+identifier: mff6paeeo7kef4mb
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: himmanshusharma
+homeFolder: C:\Users\himan\Desktop\occult\project - host
+distFolder: dist/himmanshusharma
+outDir: C:\Users\himan\Desktop\occult\project - host\dist\static
+handle404: ''
+allowErrorCollect: true
