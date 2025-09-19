@@ -36,22 +36,22 @@ export class InputFormComponent {
     this.generateParticles();
   }
 
-  // userData: any = {
-  //   fullName: '',
-  //   email: '',
-  //   mobile: '',
-  //   dateOfBirth: '',
-  //   gender: 'male',
-  //   userGoal: ''
-  // };
   userData: any = {
-    fullName: "Himmanshu sharma",
-    dateOfBirth: "2000-06-05",
-    gender: "male",
-    email: "name@domain.com",
-    mobile: "9876543210",
-    userGoal: "NA NA NA NA NA NA NA NA",
+    fullName: '',
+    email: '',
+    mobile: '',
+    dateOfBirth: '',
+    gender: 'male',
+    userGoal: ''
   };
+  // userData: any = {
+  //   fullName: "Himmanshu sharma",
+  //   dateOfBirth: "2000-06-05",
+  //   gender: "male",
+  //   email: "name@domain.com",
+  //   mobile: "9876543210",
+  //   userGoal: "NA NA NA NA NA NA NA NA",
+  // };
 
   fullName = "Himmanshu sharma";
   dateOfBirth = "2000-06-05";

@@ -525,7 +525,7 @@
               <button class="accordion-header" (click)="toggle('personality', 0)">
                 <div class="header-content">
                   <span class="section-icon">🧠</span>
-                  <span class="section-title text-white">Cosmic Personality Analysis</span>
+                  <span class="section-title mb-0 text-white">Cosmic Personality Analysis</span>
                 </div>
                 <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
                   viewBox="0 0 24 24" fill="none">
@@ -626,7 +626,7 @@
                   <button class="accordion-header" (click)="toggle('name', 0)">
                     <div class="header-content">
                       <span class="section-icon">🔮</span>
-                      <span class="section-title">Name Analysis</span>
+                      <span class="section-title mb-0">Name Analysis</span>
                     </div>
                     <svg class="chevron" [class.rotated]="isOpen('name', 0)" width="20" height="20" viewBox="0 0 24 24"
                       fill="none">
@@ -666,7 +666,7 @@
                   <button class="accordion-header" (click)="toggle('nameL', 1)">
                     <div class="header-content">
                       <span class="section-icon">🔤</span>
-                      <span class="section-title">Sacred Letters Analysis</span>
+                      <span class="section-title mb-0">Sacred Letters Analysis</span>
                     </div>
                     <svg class="chevron" [class.rotated]="isOpen('nameL', 1)" width="20" height="20" viewBox="0 0 24 24"
                       fill="none">
@@ -742,7 +742,7 @@
 
               <div class="cosmic-accordion">
                 <button class="accordion-header" (click)="toggle('mobileData', 0)">
-                  <span class="section-title">{{ result.mobileNumber }}</span>
+                  <span class="section-title mb-0">{{ result.mobileNumber }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('mobileData', 0)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
                     <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -781,8 +781,8 @@
         <div class="card-background"></div>
         <div class="card-content">
           <div class="cosmic-section loshu-section slide-up mb-4" [style.animation-delay]="'1.5s'">
-            <h3 class="section-title mb-3">🧱 Sacred Lo Shu Grid</h3>
-            <div class="loshu-grid">
+            <h3 class="section-title mb-0 mt-3">🧱 Sacred Lo Shu Grid</h3>
+            <div class="loshu-grid mt-5">
               <div *ngFor="let num of loShuDisplayOrder" class="grid-cell"
                 [class.missing]="result.missingNumbers.includes(num)"
                 [class.excess]="result.excessNumbers.includes(num)"
@@ -795,8 +795,8 @@
 
           <!-- Vastu Grid -->
           <div class="cosmic-section vastu-section slide-up" [style.animation-delay]="'0.5s'">
-            <h3 class="section-title">🧭 Cosmic Vastu Grid</h3>
-            <div class="vastu-grid">
+            <h3 class="section-title mb-0 mt-3">🧭 Cosmic Vastu Grid</h3>
+            <div class="vastu-grid mt-5">
               <div *ngFor="let dir of vastuDirectionDisplayOrder" class="vastu-cell"
                 [class.grey-area]="vastuGreyAreaDirection.includes(dir)"
                 [class.favorable]="!vastuGreyAreaDirection.includes(dir)">
@@ -817,7 +817,7 @@
               <div class="accordion-title">🔄 Amplified Cosmic Numbers</div>
               <div *ngFor="let item of repeatedNumbers; let i = index" class="accordion-item">
                 <button class="accordion-header" (click)="toggle('repeatedNumbers', i)">
-                  <span class="section-title">{{ item.label }}</span>
+                  <span class="section-title mb-0">{{ item.label }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('repeatedNumbers', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
                     <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -850,7 +850,7 @@
               <div class="accordion-title">🚫 Missing Cosmic Numbers & Divine Remedies</div>
               <div *ngFor="let entry of missingRemediesMap; let i = index" class="accordion-item">
                 <button class="accordion-header" (click)="toggle('missingRemedies', i)">
-                  <span class="section-title">Number {{ entry.number }} - {{ entry.title }}</span>
+                  <span class="section-title mb-0">Number {{ entry.number }} - {{ entry.title }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('missingRemedies', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
                     <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -954,7 +954,7 @@
               <div class="accordion-title">📆 Personal Day {{ result.personalDay }} Analysis</div>
               <div *ngFor="let item of personalDay.sections; let i = index" class="accordion-item">
                 <button class="accordion-header" (click)="toggle('personalDay', i)">
-                  <span class="section-title">{{ item.type ?? personalDay?.title }}</span>
+                  <span class="section-title mb-0">{{ item.type ?? personalDay?.title }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('personalDay', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
                     <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -977,7 +977,7 @@
               <div class="accordion-title">🌙 Personal Month {{ result.personalMonth }} Analysis</div>
               <div *ngFor="let item of personalMonth.sections; let i = index" class="accordion-item">
                 <button class="accordion-header" (click)="toggle('personalMonth', i)">
-                  <span class="section-title">{{ item.type ?? personalMonth?.title }}</span>
+                  <span class="section-title mb-0">{{ item.type ?? personalMonth?.title }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('personalMonth', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
                     <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1000,7 +1000,7 @@
               <div class="accordion-title">⭐ Personal Year {{ result.personalYear }} Analysis</div>
               <div *ngFor="let item of personalYear.sections; let i = index" class="accordion-item">
                 <button class="accordion-header" (click)="toggle('personalYear', i)">
-                  <span class="section-title">{{ item.type ?? personalYear.title }}</span>
+                  <span class="section-title mb-0">{{ item.type ?? personalYear.title }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('personalYear', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
                     <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1038,7 +1038,7 @@
                 <!-- <div class="accordion-title">🌙 {{ monthName(m.calendarMonth) }} {{ m.calendarYear }} - Personal Month {{ m.personalMonthNo }} Analysis</div> -->
                 <div *ngFor="let item of m.data.sections; let i = index" class="accordion-item">
                   <button class="accordion-header" (click)="reportToggle(monthIndex, i)">
-                    <span class="section-title">{{ item.type ?? m.data.title }}</span>
+                    <span class="section-title mb-0">{{ item.type ?? m.data.title }}</span>
                     <svg class="chevron" [class.rotated]="reportIsOpen(monthIndex, i)" width="20" height="20" viewBox="0 0 24 24" fill="none">
                       <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -1068,7 +1068,7 @@
                   <!-- <div class="accordion-title">⭐ {{ block.calendarYearLabel }} - Personal Year {{ block.personalYearNo }} Analysis</div> -->
                   <div *ngFor="let item of block.yearData.sections; let i = index" class="accordion-item">
                     <button class="accordion-header" (click)="toggle(blockIndex, i)">
-                      <span class="section-title">{{ item.type ?? block.yearData.title }}</span>
+                      <span class="section-title mb-0">{{ item.type ?? block.yearData.title }}</span>
                       <svg class="chevron" [class.rotated]="isOpen(blockIndex, i)" width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>

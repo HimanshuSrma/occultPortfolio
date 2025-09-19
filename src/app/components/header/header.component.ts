@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +13,15 @@ export class HeaderComponent {
   isScrolled = false;
   isMobileMenuOpen = false;
 
+  
+  constructor(private router: Router) {}
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50;
+  }
+  navigateToHome() {
+    this.router.navigate(['/']);
   }
 
   toggleMobileMenu() {

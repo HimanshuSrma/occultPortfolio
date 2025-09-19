@@ -162,8 +162,8 @@
     }
     
     @media (max-width: 768px) {
-      .carousel {
-        height: 80vh;
+      :host ::ng-deep .carousel {
+        height: 70vh !important;
       }
       
       .slide-title {
