@@ -1,0 +1,1092 @@
+
+<div  id="print-section">
+  <app-print [result]="result" [requestDataType]="requestDataType" [reportTimeInYear]="numYears" (requestDataInResult)="handleRequestedData($event)"></app-print>
+</div>
+
+<div class="results-container fade-in" *ngIf="result && requestDataType">
+  <div class="container">
+    <header class="results-header">
+      <!-- <button class="back-btn text-white" (click)="goBack()">
+        <svg class="text-white" width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        Back to Dashboard
+      </button> -->
+      <div class="welcome-section">
+        <h1 class="cosmic-greeting">Hey, <span class="gradient-text">{{ result?.name | titlecase}}</span></h1>
+        <!-- <h1 class="cosmic-greeting">Hey, {{ result?.name }}! 👋</h1> -->
+        <h2 class="cosmic-title">🔮 Your Cosmic Numerology Blueprint</h2>
+      </div>
+    </header>
+
+    <div class="results-content">
+
+
+
+
+
+      <!-- ########################################################################## -->
+
+
+
+
+
+      <!-- <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(72, 61, 139, 0.4), rgba(25, 25, 112, 0.2));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Indigo / Purple Twilight</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(102, 51, 153, 0.4), rgba(75, 0, 130, 0.2));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Burgundy / Wine Aura</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(0, 128, 128, 0.3), rgba(0, 64, 64, 0.15));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Teal / Cosmic Blue</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(153, 101, 21, 0.35), rgba(102, 51, 0, 0.15));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Golden Bronze</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(75, 0, 130, 0.35), rgba(48, 25, 52, 0.2));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Royal Violet / Deep Plum</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(0, 51, 102, 0.4), rgba(0, 25, 51, 0.2));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Midnight Sapphire</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(128, 0, 64, 0.35), rgba(64, 0, 32, 0.15));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Mystic Rose</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(255, 140, 0, 0.35), rgba(139, 69, 19, 0.15));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Amber Flame</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(0, 191, 255, 0.3), rgba(70, 130, 180, 0.15));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Cosmic Ice</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(0, 128, 64, 0.3), rgba(0, 64, 32, 0.15));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Mystical Jade</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(60, 0, 90, 0.5), rgba(20, 0, 40, 0.3));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Plum Radiance</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(50, 50, 150, 0.4), rgba(30, 30, 90, 0.2));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Starlight Indigo</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(200, 80, 130, 0.4), rgba(120, 20, 100, 0.2));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Nebula Rose</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(255, 204, 0, 0.35), rgba(255, 140, 0, 0.2));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Solar Flare</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(255, 191, 0, 0.35), rgba(255, 140, 0, 0.2));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Celestial Amber</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+
+
+
+
+
+      <!-- ########################################################################## -->
+
+
+
+
+      <!-- <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(88, 24, 150, 0.45), rgba(48, 25, 52, 0.25));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div class="core-numbers-section slide-up" [style.animation-delay]="'0.2s'">
+            <div class="numbers-grid">
+              <div class="number-card life-path">
+                <div class="number-label">Life Path Number</div>
+                <div class="number-subtitle">(Moolank)</div>
+                <div class="number-value">{{ result.lifePath }}</div>
+                <div class="number-glow"></div>
+              </div>
+              <div class="number-card destiny">
+                <div class="number-label">Destiny Number</div>
+                <div class="number-subtitle">(Bhagyank)</div>
+                <div class="number-value">{{ result.destiny }}</div>
+                <div class="number-glow"></div>
+              </div>
+              <div class="number-card kua">
+                <div class="number-label">Kua Number</div>
+                <div class="number-subtitle">(Direction)</div>
+                <div class="number-value">{{ result.kua }}</div>
+                <div class="number-glow"></div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Cosmic Personality Analysis</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div> -->
+
+
+      <div class="service-card" [style.animation-delay]="'0.5s'"
+        style="background: linear-gradient(135deg, rgba(60, 0, 90, 0.5), rgba(20, 0, 40, 0.3));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <!-- Core Numbers Grid -->
+          <div class="core-numbers-section slide-up">
+            <div class="numbers-grid">
+              <div class="number-card life-path">
+                <div class="number-label">Life Path Number</div>
+                <div class="number-subtitle">(Moolank)</div>
+                <div class="number-value">{{ result.lifePath }}</div>
+                <div class="number-glow"></div>
+              </div>
+              <div class="number-card destiny">
+                <div class="number-label">Destiny Number</div>
+                <div class="number-subtitle">(Bhagyank)</div>
+                <div class="number-value">{{ result.destiny }}</div>
+                <div class="number-glow"></div>
+              </div>
+              <div class="number-card kua">
+                <div class="number-label">Kua Number</div>
+                <div class="number-subtitle">(Direction)</div>
+                <div class="number-value">{{ result.kua }}</div>
+                <div class="number-glow"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personality Analysis -->
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Cosmic Personality Analysis</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+      <!-- <div class="service-card"
+        style="animation-delay: 0.45s;background: linear-gradient(135deg, rgba(75, 0, 130, 0.35), rgba(48, 25, 52, 0.2));;">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div class="core-numbers-section slide-up" [style.animation-delay]="'0.2s'">
+            <div class="numbers-grid">
+              <div class="number-card life-path">
+                <div class="number-label">Life Path Number</div>
+                <div class="number-subtitle">(Moolank)</div>
+                <div class="number-value">{{ result.lifePath }}</div>
+                <div class="number-glow"></div>
+              </div>
+              <div class="number-card destiny">
+                <div class="number-label">Destiny Number</div>
+                <div class="number-subtitle">(Bhagyank)</div>
+                <div class="number-value">{{ result.destiny }}</div>
+                <div class="number-glow"></div>
+              </div>
+              <div class="number-card kua">
+                <div class="number-label">Kua Number</div>
+                <div class="number-subtitle">(Direction)</div>
+                <div class="number-value">{{ result.kua }}</div>
+                <div class="number-glow"></div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="combinationData?.description" class="cosmic-section personality-section slide-up"
+            [style.animation-delay]="'0.4s'">
+            <div class="cosmic-accordion">
+              <button class="accordion-header" (click)="toggle('personality', 0)">
+                <div class="header-content">
+                  <span class="section-icon">🧠</span>
+                  <span class="section-title text-white">Cosmic Personality Analysis</span>
+                </div>
+                <svg class="chevron text-white" [class.rotated]="isOpen('personality', 0)" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div *ngIf="isOpen('personality', 0)" class="accordion-content p-[12px]">
+                <div class="cosmic-text">{{ combinationData.description }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div> -->
+
+
+      <!-- Name Number Analysis -->
+      <div class="service-card slide-up" *ngIf="requestDataType=='name' || requestDataType=='full-report'"
+        [style.animation-delay]="'0.5s'"
+        style="background: linear-gradient(135deg, rgba(72, 61, 139, 0.45), rgba(25, 25, 112, 0.25));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div class="cosmic-section name-section">
+            <div class="name-number-display" [class.favorable]="nameIsLucky" [class.unfavorable]="!nameIsLucky">
+              <div class="cosmic-header">
+                <h3>✨ Sacred Name Number ✨</h3>
+              </div>
+              <div class="number-flow">
+                <div class="total-sum">{{ result.nameTotalSum }}</div>
+                <div class="arrow-cosmic">👉</div>
+                <div class="final-number">{{ result.nameNumber }}</div>
+              </div>
+              <div class="cosmic-status">
+                {{ nameIsLucky ? '✅ Cosmically Favorable' : '⚠️ Needs Cosmic Alignment' }}
+              </div>
+
+              <!-- Name Analysis Accordion -->
+              <div class="name-analysis" *ngIf="nameData">
+                <div class="cosmic-accordion">
+                  <button class="accordion-header" (click)="toggle('name', 0)">
+                    <div class="header-content">
+                      <span class="section-icon">🔮</span>
+                      <span class="section-title">Name Analysis</span>
+                    </div>
+                    <svg class="chevron" [class.rotated]="isOpen('name', 0)" width="20" height="20" viewBox="0 0 24 24"
+                      fill="none">
+                      <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                  <div *ngIf="isOpen('name', 0)" class="accordion-content p-[12px]">
+                    <div class="cosmic-details">
+                      <div class="detail-card">
+                        <div class="detail-header flex justify-center items-center mb-[8px] gap-2">
+                          <span class="detail-icon">🪐</span>
+                          <span class="detail-label">Ruling Planet</span>
+                        </div>
+                        <div class="detail-value">{{ nameData.ruling_planet }}</div>
+                      </div>
+                      <div class="detail-card">
+                        <div class="detail-header flex justify-center items-center mb-[8px] gap-2">
+                          <span class="detail-icon">✨</span>
+                          <span class="detail-label">Contributing Planets</span>
+                        </div>
+                        <div class="detail-value">{{ nameData.contributing_planets?.join(', ') }}</div>
+                      </div>
+                      <div class="detail-card description">
+                        <div class="detail-header flex justify-center items-center mb-[8px] gap-2">
+                          <span class="detail-icon">📜</span>
+                          <span class="detail-label">Cosmic Description</span>
+                        </div>
+                        <div class="detail-description">{{ nameData.description }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Name Letters Analysis -->
+                <div class="cosmic-accordion" *ngIf="nameLettersArr.length">
+                  <button class="accordion-header" (click)="toggle('nameL', 1)">
+                    <div class="header-content">
+                      <span class="section-icon">🔤</span>
+                      <span class="section-title">Sacred Letters Analysis</span>
+                    </div>
+                    <svg class="chevron" [class.rotated]="isOpen('nameL', 1)" width="20" height="20" viewBox="0 0 24 24"
+                      fill="none">
+                      <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                  <div *ngIf="isOpen('nameL', 1)" class="accordion-content p-[12px]">
+                    <div class="letters-grid">
+                      <div *ngFor="let item of nameLettersArr; let i = index" class="letter-card">
+                        <button class="letter-header" (click)="toggle('nameLetter', i)">
+                          <div class="letter-symbol">{{ item }}</div>
+                          <svg class="chevron" [class.rotated]="isOpen('nameLetter', i)" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                          </svg>
+                        </button>
+                        <div *ngIf="isOpen('nameLetter', i)" class="letter-details p-[8px]">
+                          <div class="letter-attribute p-[8px]">
+                            <div class="attribute-label flex justify-center items-center gap-1 mb-2">
+                              <span class="attribute-icon">💪</span>
+                              Cosmic Strengths
+                            </div>
+                            <div class="attribute-value">{{ nameLettersData[item]?.strengths }}</div>
+                          </div>
+                          <div class="letter-attribute p-[8px]">
+                            <div class="attribute-label flex justify-center items-center gap-1 mb-2">
+                              <span class="attribute-icon">⚡</span>
+                              Growth Areas
+                            </div>
+                            <div class="attribute-value">{{ nameLettersData[item]?.weaknesses }}</div>
+                          </div>
+                          <div *ngIf="nameLettersData[item]?.best_jobs" class="letter-attribute p-[8px]">
+                            <div class="attribute-label flex justify-center items-center gap-1 mb-2">
+                              <span class="attribute-icon">🎯</span>
+                              Cosmic Careers
+                            </div>
+                            <div class="attribute-value">{{ nameLettersData[item]?.best_jobs }}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Mobile Number Analysis -->
+      <div class="service-card slide-up"
+        *ngIf="mobileData && requestDataType=='mobile' || requestDataType=='full-report'"
+        [style.animation-delay]="'0.5s'"
+        style="background: linear-gradient(135deg, rgba(72, 61, 139, 0.45), rgba(25, 25, 112, 0.25));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div class="cosmic-section mobile-section">
+            <div class="mobile-number-display" [class.favorable]="mobileIsLucky" [class.unfavorable]="!mobileIsLucky">
+              <div class="cosmic-header">
+                <h3>📱 Mobile Number Numerology 📱</h3>
+              </div>
+              <div class="number-flow">
+                <div class="total-sum">{{ mobileNumberTotal }}</div>
+                <div class="arrow-cosmic">👉</div>
+                <div class="final-number">{{ mobileCompound }}</div>
+              </div>
+              <div class="cosmic-status">
+                {{ mobileIsLucky ? '✅ Cosmically Favorable' : '⚠️ Needs Cosmic Alignment' }}
+              </div>
+
+              <div class="cosmic-accordion">
+                <button class="accordion-header" (click)="toggle('mobileData', 0)">
+                  <span class="section-title">{{ result.mobileNumber }}</span>
+                  <svg class="chevron" [class.rotated]="isOpen('mobileData', 0)" width="20" height="20"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div *ngIf="isOpen('mobileData', 0)" class="accordion-content p-[12px]">
+                  <!-- Reading Guide -->
+                  <div class="reading-guide">
+                    <h4>Cosmic Legends</h4>
+                    <div class="guide-grid">
+                      <div *ngFor="let guide of readingGuide" class="guide-item">
+                        <div class="guide-indicator" [class]="'type-' + guide.type"></div>
+                        <div class="guide-text">{{ guide.effect }}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Mobile Analysis -->
+                  <div class="mobile-analysis">
+                    <div *ngFor="let pair of mobileData" class="mobile-pair">
+                      <div class="pair-indicator" [class]="'type-' + pair.type">{{ pair.combo }}</div>
+                      <div class="pair-effect">{{ pair.effect }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Lo Shu Grid -->
+      <div class="service-card slide-up" *ngIf="requestDataType=='loshu' || requestDataType=='full-report'" [style.animation-delay]="'0.5s'" style="background: linear-gradient(135deg, rgba(72, 61, 139, 0.45), rgba(25, 25, 112, 0.25));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div class="cosmic-section loshu-section slide-up mb-4" [style.animation-delay]="'1.5s'">
+            <h3 class="section-title mb-3">🧱 Sacred Lo Shu Grid</h3>
+            <div class="loshu-grid">
+              <div *ngFor="let num of loShuDisplayOrder" class="grid-cell"
+                [class.missing]="result.missingNumbers.includes(num)"
+                [class.excess]="result.excessNumbers.includes(num)"
+                [class.balanced]="!result.missingNumbers.includes(num) && !result.excessNumbers.includes(num)">
+                <div class="cell-number">{{ num }}<sup *ngIf="num === result.kua">*</sup></div>
+                <div class="cell-count" *ngIf="result.loShuGrid[num] > 1">× {{ result.loShuGrid[num] }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vastu Grid -->
+          <div class="cosmic-section vastu-section slide-up" [style.animation-delay]="'0.5s'">
+            <h3 class="section-title">🧭 Cosmic Vastu Grid</h3>
+            <div class="vastu-grid">
+              <div *ngFor="let dir of vastuDirectionDisplayOrder" class="vastu-cell"
+                [class.grey-area]="vastuGreyAreaDirection.includes(dir)"
+                [class.favorable]="!vastuGreyAreaDirection.includes(dir)">
+                <div class="direction-text">{{ dir }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeated Numbers -->
+      <div class="service-card slide-up" *ngIf="repeatedNumbers?.length && (requestDataType=='loshu' || requestDataType=='full-report')" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="repeatedNumbers?.length" class="cosmic-section repeated-section slide-up"
+            [style.animation-delay]="'0.75s'">
+            <div class="cosmic-accordion repeated-numbers mt-[0px]">
+              <div class="accordion-title">🔄 Amplified Cosmic Numbers</div>
+              <div *ngFor="let item of repeatedNumbers; let i = index" class="accordion-item">
+                <button class="accordion-header" (click)="toggle('repeatedNumbers', i)">
+                  <span class="section-title">{{ item.label }}</span>
+                  <svg class="chevron" [class.rotated]="isOpen('repeatedNumbers', i)" width="20" height="20"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div *ngIf="isOpen('repeatedNumbers', i)" class="accordion-content p-[12px]">
+                  <div class="cosmic-text">{{ item.description }}</div>
+                  <div *ngIf="item.excessRemedy" class="remedies-section">
+                    <h4>Cosmic Remedies</h4>
+                    <ul class="cosmic-list remedies">
+                      <li *ngFor="let remedy of item.excessRemedy">{{ remedy }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Missing Numbers Remedies -->
+      <div class="service-card slide-up" *ngIf="missingRemediesMap?.length && (requestDataType=='loshu' || requestDataType=='full-report')"
+        style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div *ngIf="missingRemediesMap?.length" class="cosmic-section missing-section slide-up"
+            [style.animation-delay]="'0.75s'">
+            <div class="cosmic-accordion missing-remedies mt-[0px]">
+              <div class="accordion-title">🚫 Missing Cosmic Numbers & Divine Remedies</div>
+              <div *ngFor="let entry of missingRemediesMap; let i = index" class="accordion-item">
+                <button class="accordion-header" (click)="toggle('missingRemedies', i)">
+                  <span class="section-title">Number {{ entry.number }} - {{ entry.title }}</span>
+                  <svg class="chevron" [class.rotated]="isOpen('missingRemedies', i)" width="20" height="20"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div *ngIf="isOpen('missingRemedies', i)" class="accordion-content p-[12px]">
+                  <div class="cosmic-text effect">{{ entry.effect }}</div>
+                  <div *ngIf="entry.missingRemedies" class="remedies-section">
+                    <h4>Divine Remedies</h4>
+                    <ul class="cosmic-list remedies">
+                      <li *ngFor="let remedy of entry.missingRemedies">{{ remedy }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- Favorable Recommendations -->
+      <div class="service-card slide-up" *ngIf="hasCombinationData && (requestDataType=='recommendation' || requestDataType=='full-report')" [style.animation-delay]="'0.5s'" style="background: linear-gradient(135deg, rgba(0, 128, 64, 0.3), rgba(0, 64, 32, 0.15));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <!-- <div  class="cosmic-section recommendations-section slide-up" [style.animation-delay]="'2.6s'"> -->
+          <!-- <div class="recommendations-card"> -->
+          <div class="cosmic-header">
+            <h3>🌟 Cosmic Favorable Recommendations 🌟</h3>
+          </div>
+
+          <div class="recommendations-grid">
+            <div class="recommendation-item">
+              <div class="recommendation-label">Lucky Numbers</div>
+              <div class="tags-container">
+                <span *ngFor="let num of combinationData?.luckyNumbers" class="cosmic-tag numbers">{{ num }}</span>
+              </div>
+            </div>
+
+            <div class="recommendation-item">
+              <div class="recommendation-label">Lucky Colors</div>
+              <div class="tags-container">
+                <span *ngFor="let color of combinationData?.luckyColors" class="cosmic-tag colors">{{ color }}</span>
+              </div>
+            </div>
+
+            <div class="recommendation-item">
+              <div class="recommendation-label">Lucky Name Numbers</div>
+              <div class="tags-container">
+                <span *ngFor="let num of combinationData?.luckyNameNumbers" class="cosmic-tag name-numbers">{{ num
+                  }}</span>
+              </div>
+            </div>
+
+            <div class="recommendation-item">
+              <div class="recommendation-label">Lucky Business Numbers</div>
+              <div class="tags-container">
+                <span *ngFor="let num of combinationData?.luckyBusinessNumbers" class="cosmic-tag business-numbers">{{
+                  num }}</span>
+              </div>
+            </div>
+
+            <div class="recommendation-item full-width">
+              <div class="recommendation-label">Favorable Professions</div>
+              <div class="cosmic-text">{{ combinationData?.luckyProfessions }}</div>
+            </div>
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <!-- Personal Time -->
+      <div class="service-card slide-up" *ngIf="requestDataType=='time' || requestDataType=='full-report'"
+        [style.animation-delay]="'0.5s'"
+        style="background: linear-gradient(135deg, rgba(0, 191, 255, 0.3), rgba(70, 130, 180, 0.15));">
+        <div class="card-background"></div>
+        <div class="card-content">
+          <div class="cosmic-section personal-numbers-section slide-up" [style.animation-delay]="'0.8s'">
+            <h3 class="section-title mb-3">📅 Personal Cosmic Cycles 📅</h3>
+            <div class="personal-numbers-grid">
+              <div class="personal-card day">
+                <div class="personal-label">Personal Day</div>
+                <div class="personal-value">{{ result.personalDay }}</div>
+              </div>
+              <div class="personal-card month">
+                <div class="personal-label">Personal Month</div>
+                <div class="personal-value">{{ result.personalMonth }}</div>
+              </div>
+              <div class="personal-card year">
+                <div class="personal-label">Personal Year</div>
+                <div class="personal-value">{{ result.personalYear }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Day Analysis -->
+          <div *ngIf="personalDay" class="cosmic-section slide-up" [style.animation-delay]="'1s'">
+            <div class="cosmic-accordion personal-day">
+              <div class="accordion-title">📆 Personal Day {{ result.personalDay }} Analysis</div>
+              <div *ngFor="let item of personalDay.sections; let i = index" class="accordion-item">
+                <button class="accordion-header" (click)="toggle('personalDay', i)">
+                  <span class="section-title">{{ item.type ?? personalDay?.title }}</span>
+                  <svg class="chevron" [class.rotated]="isOpen('personalDay', i)" width="20" height="20"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div *ngIf="isOpen('personalDay', i)" class="accordion-content p-[12px]">
+                  <div class="cosmic-text">{{ item.content }}</div>
+                  <ul *ngIf="item.list" class="cosmic-list">
+                    <li *ngFor="let listItem of item.list">{{ listItem }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Month Analysis -->
+          <div *ngIf="personalMonth" class="cosmic-section slide-up" [style.animation-delay]="'1.2s'">
+            <div class="cosmic-accordion personal-month">
+              <div class="accordion-title">🌙 Personal Month {{ result.personalMonth }} Analysis</div>
+              <div *ngFor="let item of personalMonth.sections; let i = index" class="accordion-item">
+                <button class="accordion-header" (click)="toggle('personalMonth', i)">
+                  <span class="section-title">{{ item.type ?? personalMonth?.title }}</span>
+                  <svg class="chevron" [class.rotated]="isOpen('personalMonth', i)" width="20" height="20"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div *ngIf="isOpen('personalMonth', i)" class="accordion-content p-[12px]">
+                  <div class="cosmic-text">{{ item.content }}</div>
+                  <ul *ngIf="item.list" class="cosmic-list">
+                    <li *ngFor="let listItem of item.list">{{ listItem }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Year Analysis -->
+          <div *ngIf="personalYear" class="cosmic-section slide-up" [style.animation-delay]="'1.4s'">
+            <div class="cosmic-accordion personal-year">
+              <div class="accordion-title">⭐ Personal Year {{ result.personalYear }} Analysis</div>
+              <div *ngFor="let item of personalYear.sections; let i = index" class="accordion-item">
+                <button class="accordion-header" (click)="toggle('personalYear', i)">
+                  <span class="section-title">{{ item.type ?? personalYear.title }}</span>
+                  <svg class="chevron" [class.rotated]="isOpen('personalYear', i)" width="20" height="20"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div *ngIf="isOpen('personalYear', i)" class="accordion-content p-[12px]">
+                  <div class="cosmic-text">{{ item.content }}</div>
+                  <ul *ngIf="item.list" class="cosmic-list">
+                    <li *ngFor="let listItem of item.list">{{ listItem }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+      <!-- ################################### Report Time #################################### -->
+       
+      @if(numYears){
+        <div class="service-card slide-up" [style.animation-delay]="'0.5s'" style="background: linear-gradient(135deg, rgba(153, 101, 21, 0.35), rgba(102, 51, 0, 0.15));">
+          <div class="card-background"></div>
+          <div class="card-content">
+            <h3 class="section-title mb-3">📅 Monthly Report 📅</h3>
+            <div *ngFor="let m of yearlyMonths; let monthIndex = index" class="cosmic-section slide-up" [style.animation-delay]="'1.2s'">
+              <div class="cosmic-accordion personal-month">
+                <div class="accordion-title">{{ monthName(m.calendarMonth) }} {{ m.calendarYear }}</div>
+                <!-- <div class="accordion-title">🌙 {{ monthName(m.calendarMonth) }} {{ m.calendarYear }} - Personal Month {{ m.personalMonthNo }} Analysis</div> -->
+                <div *ngFor="let item of m.data.sections; let i = index" class="accordion-item">
+                  <button class="accordion-header" (click)="reportToggle(monthIndex, i)">
+                    <span class="section-title">{{ item.type ?? m.data.title }}</span>
+                    <svg class="chevron" [class.rotated]="reportIsOpen(monthIndex, i)" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <div *ngIf="reportIsOpen(monthIndex, i)" class="accordion-content p-[12px]">
+                    <div class="cosmic-text">{{ item.content }}</div>
+                    <ul *ngIf="item.list" class="cosmic-list">
+                      <li *ngFor="let listItem of item.list">{{ listItem }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card slide-up" [style.animation-delay]="'0.5s'" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.35), rgba(139, 69, 19, 0.15));">
+          <div class="card-background"></div>
+          <div class="card-content">
+          
+            <h3 class="section-title mb-3">📅 Yearly Report 📅</h3>
+            <!-- Personal Year Analysis -->
+            <div *ngIf="multiYearBlocks.length" class="space-y-6">
+              <div *ngFor="let block of multiYearBlocks; let blockIndex = index" class="cosmic-section slide-up" [style.animation-delay]="'1.4s'">
+                <div class="cosmic-accordion personal-year">
+                  <div class="accordion-title">{{ block.calendarYearLabel }}</div>
+                  <!-- <div class="accordion-title">⭐ {{ block.calendarYearLabel }} - Personal Year {{ block.personalYearNo }} Analysis</div> -->
+                  <div *ngFor="let item of block.yearData.sections; let i = index" class="accordion-item">
+                    <button class="accordion-header" (click)="toggle(blockIndex, i)">
+                      <span class="section-title">{{ item.type ?? block.yearData.title }}</span>
+                      <svg class="chevron" [class.rotated]="isOpen(blockIndex, i)" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <div *ngIf="isOpen(blockIndex, i)" class="accordion-content p-[12px]">
+                      <div class="cosmic-text">{{ item.content }}</div>
+                      <ul *ngIf="item.list" class="cosmic-list">
+                        <li *ngFor="let listItem of item.list">{{ listItem }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+  </div>
+</div>
+</div>

@@ -1,0 +1,431 @@
+<div class="container">
+  <div class="flex justify-between my-10">
+    <button class="back-btn text-white" (click)="goBack()">
+      <svg class="text-white" width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      Back to Dashboard
+    </button>
+    <button class="back-btn text-white" printSectionId="print-section" ngxPrint printTitle="Report" [useExistingCss]="true">
+      <svg class="rotate-270 text-white" width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      Save Report
+    </button>
+  </div>
+</div>
+
+<div class="bg-white">
+  <!-- <div *ngIf="result" class="onlyPrint max-w-3xl mx-auto p-6 bg-white" id="print-section"> -->
+  <div *ngIf="result" class="print-section max-w-3xl mx-auto" id="print-section">
+    <div class="watermark-text">Himmanshu Sharma</div>
+    <!-- Note -->
+    <div class="p-8 rounded-lg text-justify" [innerHTML]="noteHTML"></div>
+      <div class="my-[149px]">
+        <img src="/ganeshJi.jpg" class="rounded-lg m-auto" alt="">
+        <div class="my-3 p-4 bg-black text-white text-center">
+          <h1 class="mb-3">{{result.name | titlecase}}</h1>
+          <div class="flex justify-center mb-3 gap-3">
+            <h3>{{result.mobileNumber}}</h3>
+            <h3>{{result.dob}}</h3>
+          </div>
+        </div>
+      </div>
+  
+      <div class="page-break"></div>
+    
+    
+    
+      <!-- <h1 class="text-3xl font-bold text-indigo-700 mb-5">Hey, {{result.name}} 👋</h1> -->
+      <!-- <h2 class="text-2xl font-bold text-indigo-700 mb-4 text-center">🔮 Your Numerology Results</h2> -->
+      
+      <!-- Numbers -->
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      <div class="grid grid-cols-3 gap-4 text-center mb-6">
+        <div class="bg-indigo-50 rounded p-4 shadow">
+          <div class="text-sm font-semibold text-gray-600">Life Path Number (Moolank)</div>
+          <div class="text-3xl font-bold text-indigo-700">{{ result.lifePath }}</div>
+        </div>
+        <div class="bg-indigo-50 rounded p-4 shadow">
+          <div class="text-sm font-semibold text-gray-600">Destiny Number (Bhagyank)</div>
+          <div class="text-3xl font-bold text-indigo-700">{{ result.destiny }}</div>
+        </div>
+        <div class="bg-indigo-50 rounded p-4 shadow">
+          <div class="text-sm font-semibold text-gray-600">Kua Number</div>
+          <div class="text-3xl font-bold text-indigo-700">{{ result.kua }}</div>
+        </div>
+      </div>
+    
+      <div class="watermark-text">Himmanshu Sharma</div>
+    
+    <div class="mt-8 bg-indigo-50 border border-indigo-200 rounded-xl shadow w-full mb-6" *ngIf="this.combinationData?.description">
+      <div class="border-b">
+        <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+          <span class="font-medium">Personality Analysis</span>
+        </button>
+        <div class="px-4 py-2 text-gray-600 transition-all duration-300">
+          <div class="text-gray-600 text-justify">{{ this.combinationData?.description }}</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="page-break"></div>
+    
+    
+    <!-- Name Numerology -->
+    
+    <div class="watermark-text">Himmanshu Sharma</div>
+    
+    @if (requestDataType=='name' || requestDataType=='full-report') {
+      <div class="rounded-lg p-4 shadow text-center mb-6 border" [ngClass]="{'bg-green-50 border-green-300': nameIsLucky, 'bg-red-50 border-red-300': !nameIsLucky}">
+        <div class="font-semibold">Name Number</div>
+        <div class="text-3xl font-bold flex justify-evenly" [ngClass]="{'text-green-700': nameIsLucky, 'text-red-700': !nameIsLucky}">
+          <div>{{ result.nameTotalSum }}</div>
+          <div>👉</div>
+          <div>{{ result.nameNumber }}</div>
+        </div>
+        <div class="text-sm mt-1 font-medium" [ngClass]="{'text-green-600': nameIsLucky, 'text-red-600': !nameIsLucky }">{{ nameIsLucky ? '✅ Favorable' : '⚠️ Not Favorable' }}</div>
+        <div class=" px-2 mt-4 border rounded-xl">
+          <ng-container *ngIf="nameData">
+            <button class="w-full border-b py-3 flex justify-between items-center focus:outline-none">
+              <span class="font-medium me-3">Name Analysis</span>
+            </button>
+            
+            <div class=" py-2 text-gray-600 transition-all duration-300">
+              <div class="mb-3 p-3 bg-purple-50 border border-purple-200 rounded-lg shadow-sm flex justify-around">
+                <div class="font-semibold text-purple-700 mb-1">Ruling Planet:</div>
+                <div class="text-gray-700">{{ nameData?.ruling_planet }}</div>
+              </div>
+              <div class="mb-3 p-3 bg-pink-50 border border-pink-200 rounded-lg shadow-sm flex justify-around">
+                <div class="font-semibold text-pink-700 mb-1">Contributing Planets:</div>
+                <div class="text-gray-700">{{ nameData?.contributing_planets?.join(', ') }}</div>
+              </div>
+              <div class="mb-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm">
+                <div class="font-semibold text-yellow-800 mb-1">Description:</div>
+                <div class="text-gray-700 text-justify">{{ nameData?.description }}</div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    
+      <div class="page-break"></div>
+      
+      
+      <!-- <div class="rounded-lg p-4 shadow text-center mb-6 border" [ngClass]="{'bg-green-50 border-green-300': nameIsLucky, 'bg-red-50 border-red-300': !nameIsLucky}"> -->
+        
+      <div class="watermark-text">Himmanshu Sharma</div>
+        
+      <div class="px-2 mt-4 rounded-xl">
+        <ng-container *ngIf="nameLettersArr.length">
+          <button class="w-full  py-3 flex justify-between items-center focus:outline-none">
+            <span class="font-medium mx-auto">Name Letters Analysis</span>
+          </button>
+          
+          <div *ngFor="let item of nameLettersArr; let i = index">
+            <div class="border rounded-lg mb-3">
+              <button class="w-full text-left px-2 py-3 flex justify-between items-center focus:outline-none"><span class="font-medium mx-auto">Letter [<strong class="font-extrabold">{{ item }}</strong>] in your name</span></button>
+              <div class="px-2 py-2 text-gray-600 transition-all duration-300 text-center">
+                <div class="mb-3 p-3 bg-purple-50 border border-purple-200 rounded-lg shadow-sm">
+                  <div class="font-semibold text-purple-700 mb-1">Strength</div>
+                  <div class="text-gray-700">{{ nameLettersData[item]?.strengths }}</div>
+                </div>
+                <div class="mb-3 p-3 bg-pink-50 border border-pink-200 rounded-lg shadow-sm">
+                  <div class="font-semibold text-pink-700 mb-1">Weakness</div>
+                  <div class="text-gray-700">{{ nameLettersData[item]?.weaknesses }}</div>
+                </div>
+                <div class="mb-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm" *ngIf="nameLettersData[item]?.best_jobs">
+                  <div class="font-semibold text-yellow-800 mb-1">Best Jobs</div>
+                  <div class="text-gray-700">{{ nameLettersData[item]?.best_jobs }}</div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="page-break" *ngIf="(i + 1) % 2 === 0 && i !== nameLettersArr.length - 1"></div>
+        
+          </div>
+          
+        </ng-container>
+      </div>
+    <!-- </div> -->
+    
+      <div class="watermark-text">Himmanshu Sharma</div>
+     
+      <div class="page-break" *ngIf="requestDataType=='full-report'"></div>
+    }
+
+    <!-- Mobile Number Numerology -->
+    @if (requestDataType=='mobile' || requestDataType=='full-report') {
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      <div class="p-4 mt-8 border rounded-xl shadow w-full" [ngClass]="{'bg-green-50 border-green-300': mobileIsLucky, 'bg-red-50 border-red-300': !mobileIsLucky}" *ngIf="mobileData">
+        <h3 class="p-[12px] text-center font-bold"> 📱 Mobile Number Numerology 📱</h3>
+        <div class="text-3xl font-bold flex justify-evenly" [ngClass]="{'text-green-700': mobileIsLucky, 'text-red-700': !mobileIsLucky}">
+          <div>{{ mobileNumberTotal }}</div>
+          <div>👉</div>
+          <div>{{ mobileCompound }}</div>
+        </div>
+        <div class="text-sm mt-1 font-medium text-center" [ngClass]="{'text-green-600': mobileIsLucky, 'text-red-600': !mobileIsLucky }">{{ mobileIsLucky ? '✅ Favorable' : '⚠️ Not Favorable' }}</div>
+        <div class=" px-2 mt-4 border rounded-xl">
+          <div class="border-b">
+            <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ result.mobileNumber }}</span></button>
+            
+            <div class="py-2 transition-all duration-300">
+              <div class="mb-8 p-3 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm">
+                <h3 class="font-semibold text-center mb-3">Legends</h3>
+                <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+                  <ng-container *ngFor="let pair of readingGuide">
+                    <div class="flex space-x-2 items-center">
+                      <div class="text-sm px-2 py-2 rounded shadow text-white" [ngClass]="{ 'bg-red-500': pair.type === 0, 'bg-green-500': pair.type === 1, 'bg-yellow-500': pair.type === 2}"></div>
+                      <div class="px-2 py-1 rounded shadow bg-white text-gray-800 flex-1">{{ pair.effect }}</div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              
+              <ng-container *ngFor="let pair of mobileData">
+                <div class="flex space-x-2 items-center mb-3">
+                  <div class="text-sm px-2 py-1 rounded shadow text-white"
+                    [ngClass]="{ 'bg-red-500': pair.type === 0, 'bg-green-500': pair.type === 1, 'bg-yellow-500': pair.type === 2 }">
+                    {{ pair.combo }}</div>
+                    <div class="px-2 py-1 rounded shadow bg-white text-gray-800 flex-1 text-justify">{{ pair.effect }}</div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="page-break" *ngIf="requestDataType=='full-report'"></div>
+    }
+
+    
+    <!-- Lo Shu Grid -->
+
+    @if (requestDataType=='loshu' || requestDataType=='full-report') {
+
+      <div class="watermark-text">Himmanshu Sharma</div>
+      
+      <h3 class="text-lg font-semibold text-gray-700 mt-8 mb-6">🧱 Lo Shu Grid</h3>
+      <div class="grid grid-cols-3 gap-2 max-w-xs mx-auto mb-4">
+        <ng-container *ngFor="let num of loShuDisplayOrder">
+          <div class="border rounded p-4 text-center font-semibold transition loshuGridMinHight flex justify-center items-center" [ngClass]="{ 'bg-red-100 text-red-600': result.missingNumbers.includes(num), 'bg-yellow-100 text-yellow-800': result.excessNumbers.includes(num), 'bg-green-50 text-green-700': !result.missingNumbers.includes(num) && !result.excessNumbers.includes(num)}">
+            <div class="text-xl">{{ num }}<sup *ngIf="num == result.kua">*</sup></div>
+            <div class="text-xs font-normal" *ngIf="result.loShuGrid[num] > 1"> × {{ result.loShuGrid[num] }}</div>
+          </div>
+        </ng-container>
+      </div>
+
+      <h3 class="text-lg font-semibold text-gray-700 mt-8 mb-6">🧱 Vastu Grid</h3>
+      <div class="grid grid-cols-3 gap-2 max-w-xs mx-auto mb-4">
+        <ng-container *ngFor="let dir of vastuDirectionDisplayOrder">
+          <div class="border rounded p-4 text-center font-semibold transition loshuGridMinHight flex justify-center items-center" [ngClass]="{ 'bg-red-100 text-red-600': vastuGreyAreaDirection.includes(dir), 'bg-green-50 text-green-700': !vastuGreyAreaDirection.includes(dir)}">
+            <div class="text-xs font-normal">{{ dir }}</div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="page-break"></div>
+  
+      <div *ngIf="repeatedNumbers?.length">
+        <h3 class="p-[12px] text-center font-bold">Repeted Numbers</h3>
+        <div *ngFor="let item of repeatedNumbers; let i = index">
+          <div class="mt-4 bg-fuchsia-50 border border-fuchsia-200 rounded-xl shadow w-full">
+            <button class="w-full text-left px-4 py-3 flex justify-center items-center focus:outline-none"><span class="font-medium">{{ item.label }}</span></button>
+            <div class="px-4 py-2 text-gray-600 transition-all duration-300 text-justify">
+              <p class="mb-3 text-gray-500">{{ item.description }}</p>
+              <h3 class="text-md font-bold" *ngIf="item?.excessRemedy">Remedy</h3>
+              <ul class="list-disc text-emerald-500 font-semibold list-inside text-sm mt-4" *ngIf="item?.excessRemedy">
+                <li *ngFor="let remedy of item.excessRemedy">{{ remedy }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-break" *ngIf="repeatedNumbers?.length"></div>
+
+      <!-- Missing Remedies -->
+      <div *ngIf="missingRemediesMap?.length > 0" class="mt-8">
+        <h3 class="p-[12px] text-center font-bold text-red-600">Missing Numbers & Remedies</h3>
+        <div *ngFor="let entry of missingRemediesMap; let i = index">
+          <div class="bg-blue-50 border-blue-200 border rounded-lg shadow w-full mt-4">
+            <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none"><span class="mx-auto text-md font-semibold text-red-700">Number {{ entry.number }} - ({{entry.title}})</span></button>
+            <div class="px-4 py-2 transition-all duration-300 text-justify">
+              <p class="mb-3 text-gray-500">{{ entry?.effect }}</p>
+              <h3 class="text-md font-bold" *ngIf="entry.missingRemedies">Remedy</h3>
+              <ul class="list-disc text-emerald-500 font-semibold list-inside text-sm mt-4" *ngIf="entry.missingRemedies">
+                <li *ngFor="let remedy of entry.missingRemedies">{{ remedy }}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="page-break" *ngIf="(i + 1) % 2 === 0 && i !== missingRemediesMap.length - 1"></div>
+        </div>
+      </div>
+        
+      <div class="page-break" *ngIf="requestDataType=='full-report'"></div>
+    }
+
+      
+    <!-- Favorable Combinations -->
+    @if(requestDataType=='recommendation' || requestDataType=='full-report'){
+
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      <div *ngIf="hasCombinationData" class="mt-8 p-6 bg-green-50 border border-green-200 rounded-xl shadow">
+        <h3 class="text-2xl font-bold text-green-700 mb-4 text-center">🌟 Favorable Recommendations</h3>
+        <h4 class="text-sm font-semibold text-gray-600">Lucky Numbers:</h4>
+        <div class="flex flex-wrap gap-2 mt-1 mb-4">
+          <span *ngFor="let num of combinationData?.luckyNumbers" class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">{{ num }}</span>
+        </div>
+        <h4 class="text-sm font-semibold text-gray-600">Lucky Colors:</h4>
+        <div class="flex flex-wrap gap-2 mt-1 mb-4">
+          <span *ngFor="let color of combinationData?.luckyColors" class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">{{ color }}</span>
+        </div>
+        <h4 class="text-sm font-semibold text-gray-600">Lucky Name Numbers:</h4>
+        <div class="flex flex-wrap gap-2 mt-1 mb-4">
+          <span *ngFor="let num of combinationData?.luckyNameNumbers" class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">{{ num }}</span>
+        </div>
+        <h4 class="text-sm font-semibold text-gray-600">Lucky Business Numbers:</h4>
+        <div class="flex flex-wrap gap-2 mt-1 mb-4">
+          <span *ngFor="let num of combinationData?.luckyBusinessNumbers" class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">{{ num }}</span>
+        </div>
+        <h4 class="text-sm font-semibold text-gray-600">Favorable Professions:</h4>
+        <p class="text-sm text-gray-700 mt-1 leading-relaxed text-justify">{{ combinationData?.luckyProfessions }}</p>
+      </div>
+      <div class="page-break"></div>
+
+    }
+
+    <!-- Personal Numbers -->
+    @if (requestDataType=='time' || requestDataType=='full-report') {
+
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      <h3 class="text-lg font-semibold text-gray-700 mb-2 mt-6">📅 Personal Day, Month & Year</h3>
+      <div class="grid grid-cols-3 gap-4 text-center mb-6">
+        <div class="bg-lime-50 rounded p-4 shadow">
+          <div class="text-sm font-semibold text-gray-600">Personal Day</div>
+          <div class="text-2xl font-bold text-lime-700">{{ result.personalDay }}</div>
+        </div>
+        <div class="bg-lime-50 rounded p-4 shadow">
+          <div class="text-sm font-semibold text-gray-600">Personal Month</div>
+          <div class="text-2xl font-bold text-lime-700">{{ result.personalMonth }}</div>
+        </div>
+        <div class="bg-lime-50 rounded p-4 shadow">
+          <div class="text-sm font-semibold text-gray-600">Personal Year</div>
+          <div class="text-2xl font-bold text-lime-700">{{ result.personalYear }}</div>
+        </div>
+      </div>
+  
+      <!-- personalDay accordion -->
+  
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      
+      <div class="mt-8 bg-fuchsia-50 border border-fuchsia-200 rounded-xl shadow w-full" *ngIf="personalDay">
+        <h3 class="p-[12px] text-center font-bold"> 📆 Personal Day {{ result.personalDay }} 📆</h3>
+        <div *ngFor="let item of personalDay.sections; let i = index" class="border-b">
+          <button class="w-full text-left px-4 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ item.type ?? personalDay.title }}</span></button>
+          <div class="px-4 py-2 text-gray-600 transition-all duration-300 text-justify">
+            {{ item.content }}
+            <ul class="list-disc list-inside text-sm text-gray-700 mt-1" *ngIf="item?.list">
+              <li *ngFor="let remedy of item.list">{{ remedy }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+  
+      <!-- personalYear Month -->
+  
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      
+      <div class="mt-8 bg-rose-50 border border-rose-200 rounded-xl shadow w-full" *ngIf="personalMonth">
+        <h3 class="p-[12px] text-center font-bold"> 📆 Personal Month {{ result.personalMonth }} 📆</h3>
+        <div *ngFor="let item of personalMonth.sections; let i = index" class="border-b">
+          <button class="w-full px-4 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ item.type ?? personalMonth.title }}</span></button>
+          <div class="px-4 py-2 text-gray-600 transition-all duration-300 text-justify">
+            {{ item.content }}
+            <ul class="list-disc list-inside text-sm text-gray-700 mt-1" *ngIf="item?.list">
+              <li *ngFor="let remedy of item.list">{{ remedy }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="page-break"></div>
+      <!-- personalYear accordion -->
+  
+      <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl shadow w-full" *ngIf="personalYear">
+      
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      
+        <h3 class="p-[12px] text-center font-bold">📅 Personal Year {{ result.personalYear }} 📅</h3>
+        <div *ngFor="let item of personalYear.sections; let i = index" class="border-b">
+          <button class="w-full text-left px-4 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ item.type ?? personalYear.title }}</span></button>
+          <div class="px-4 py-2 text-gray-600 transition-all duration-300 text-justify">
+            {{ item?.content }}
+            <ul class="list-disc list-inside text-sm text-gray-700 mt-1" *ngIf="item?.list">
+              <li *ngFor="let remedy of item.list">{{ remedy }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="page-break" *ngIf="multiYearBlocks.length"></div>
+    }
+
+    @if(multiYearBlocks.length){
+      
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      
+      <div *ngFor="let m of yearlyMonths;let i=index;">
+        <div class="mt-8 bg-rose-50 border border-rose-200 rounded-xl shadow w-full">
+          <button class="w-full text-left px-4 py-2 flex justify-center items-center focus:outline-none">
+            <span class="font-medium">{{ monthName(m.calendarMonth) }} {{ m.calendarYear }}</span>
+            <!-- <span class="font-medium">{{ monthName(m.calendarMonth) }} {{ m.calendarYear }} — Personal Month {{ m.personalMonthNo }}</span> -->
+          </button>
+          
+          <div *ngIf="m.data" class="px-4 pb-2 transition-all duration-300 text-justify">
+            <div *ngFor="let item of m.data.sections">
+              <p class="font-medium mb-1">{{ item.type ?? m.data.title }}</p>
+              <p class="text-gray-600 text-sm mb-3" *ngIf="item.content">{{ item.content }}</p>
+              <ul *ngIf="item.list" class="list-disc list-inside text-sm text-gray-700 mt-1">
+                <li *ngFor="let remedy of item.list">{{ remedy }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="page-break" *ngIf="(i + 1) % 3 === 0 && i !== missingRemediesMap.length - 1"></div>
+      </div>
+    }
+
+    <!-- Personal-Year Summaries with full accordion style -->
+    @if(multiYearBlocks.length){
+      
+      <div class="watermark-text">Himmanshu Sharma</div>
+
+      <div *ngFor="let block of multiYearBlocks;let ind=index">
+        <div class="mt-5 bg-blue-50 border border-blue-200 rounded-xl shadow w-full">
+          <h3 class="p-[12px] text-center font-bold">🎯 {{ block.calendarYearLabel }}</h3>
+          <!-- <h3 class="p-[12px] text-center font-bold">🎯 {{ block.calendarYearLabel }} — Personal Year {{ block.personalYearNo }}</h3> -->
+          <div *ngFor="let item of block.yearData.sections; let i = index" class="border-b">
+            <button class="w-full text-left px-4 py-2 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ item.type ?? block.yearData.title }}</span></button>
+            <div class="px-4 pb-2 text-gray-600 transition-all duration-300 text-justify">
+              {{ item.content }}
+              <ul class="list-disc list-inside text-sm text-gray-700 mt-1" *ngIf="item?.list">
+                <li *ngFor="let remedy of item.list">{{ remedy }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="page-break" *ngIf="multiYearBlocks.length != (ind+1)"></div>
+      </div>
+    }
+
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="carousel">
+  <div class="carousel-container">
+    <div class="carousel-slides" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
+      @for (slide of slides; track $index) {
+        <div class="carousel-slide">
+          <div class="slide-background" [style.background-image]="'url(' + slide.backgroundImage + ')'"></div>
+          <div class="slide-overlay"></div>
+            <div class="container">
+              <div class="slide-content">
+                <div class="slide-icon">{{ slide.icon }}</div>
+                <h1 class="slide-title">{{ slide.title }}</h1>
+                <p class="slide-subtitle">{{ slide.subtitle }}</p>
+
+                <div class="slide-features">
+                  @for (feature of slide?.features; track $index) {
+                    <div class="feature">
+                      <span class="feature-icon">{{ feature?.icon }}</span>
+                      <span class="feature-text">{{ feature?.text }}</span>
+                    </div>
+                  }
+                </div>
+
+                <div class="slide-buttons">
+                  <a [href]="slide.primaryAction?.link" class="btn btn-primary">{{ slide.primaryAction?.text }}</a>
+                  <a [href]="slide.secondaryAction?.link" class="btn btn-outline">{{ slide.secondaryAction?.text }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      }
+    </div>
+    <div class="carousel-indicators">
+      <button *ngFor="let slide of slides; let i = index" class="indicator" [class.active]="i === currentSlide" (click)="goToSlide(i)"></button>
+    </div>
+    <button class="carousel-nav prev" (click)="previousSlide()">‹</button>
+    <button class="carousel-nav next" (click)="nextSlide()">›</button>
+  </div>
+</div>

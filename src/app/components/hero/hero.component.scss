@@ -1,0 +1,242 @@
+/* Host wrapper */
+:host {
+    display: block;
+}
+
+/* Hero Section */
+.hero {
+    padding: 120px 20px 80px;
+    background: linear-gradient(135deg, #F8F9FA 0%, #E8F5E8 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg') center/cover no-repeat;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--deep-blue);
+    margin-bottom: 24px;
+}
+
+.highlight {
+    color: var(--primary-gold);
+    position: relative;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--dark-gray);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+.hero-image {
+    position: relative;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Hero Stats Section */
+.hero-stats-section {
+    background: var(--white);
+    padding: 60px 20px;
+    border-top: 4px solid var(--primary-gold);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: var(--light-gray);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    flex-direction: row;
+}
+
+.stat-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    width: 70px;
+    height: 70px;
+    background: var(--primary-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--deep-blue);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    :host .hero-content {
+        gap: 40px;
+    }
+
+    :host .stats-grid {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Hero */
+    :host .hero {
+        padding: 100px 20px 60px;
+    }
+
+    :host .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    :host .hero-title {
+        font-size: 2.5rem;
+    }
+
+    :host .hero-buttons {
+        justify-content: center;
+    }
+
+    :host .hero-stats {
+        justify-content: center;
+        gap: 32px;
+    }
+
+    :host .hero-image img {
+        height: 300px;
+    }
+
+    /* Hero Stats Section */
+    :host .hero-stats-section {
+        padding: 40px 20px;
+    }
+
+    :host .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    :host .stat-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        padding: 20px;
+    }
+
+    :host .stat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    :host .stat-number {
+        font-size: 1.5rem;
+    }
+
+    :host .stat-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :host .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    :host .hero-buttons {
+        gap: 12px;
+    }
+
+    :host .hero-subtitle {
+        font-size: 1rem;
+    }
+}

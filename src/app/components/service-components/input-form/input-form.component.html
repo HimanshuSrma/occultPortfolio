@@ -1,0 +1,311 @@
+<div class="onboarding-container fade-in">
+  <div class="container">
+    <div class="onboarding-content">
+      <header class="cosmic-header">
+        <!-- ✨  -->
+        <h1 class="cosmic-title"><span class="cosmic-title-text">Welcome to Your Cosmic Journey</span></h1>
+        <p class="cosmic-subtitle">
+          Unlock the mysteries of your numbers and discover your divine path through ancient numerological wisdom
+        </p>
+      </header>
+
+      <div class="form-container glow text-white">
+        <form #form="ngForm" (ngSubmit)="submitInitialForm(form,true,true)" class="cosmic-form" novalidate>
+        <!-- <form #form="ngForm" (ngSubmit)="submitInitialForm(form,false)" class="cosmic-form" novalidate> -->
+
+          <!-- Group 1: Full Name + Email -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Full Name -->
+            <div class="form-group slide-up" [style.animation-delay]="'0.2s'">
+              <label class="cosmic-label">
+                <span class="label-icon">👤</span>
+                Full Name
+              </label>
+              <input type="text" name="fullName" [(ngModel)]="userData.fullName" required minlength="3"
+                #fullNameRef="ngModel" class="cosmic-input"
+                [class.error]="(fullNameRef.invalid && fullNameRef.touched) || invalidField['fullName']"
+                [class.shake]="invalidField['fullName']" placeholder="Enter your full name" />
+              <div class="input-glow"></div>
+              <p *ngIf="fullNameRef.invalid && fullNameRef.touched" class="error-message">
+                ⚠️ Name is required and must be at least 3 characters
+              </p>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group slide-up" [style.animation-delay]="'0.3s'">
+              <label class="cosmic-label">
+                <span class="label-icon">📧</span>
+                Email Address
+              </label>
+              <input type="email" name="email" [(ngModel)]="userData.email" required email #emailRef="ngModel"
+                class="cosmic-input" [class.error]="(emailRef.invalid && emailRef.touched) || invalidField['email']"
+                [class.shake]="invalidField['email']" placeholder="Enter your email address" />
+              <div class="input-glow"></div>
+              <p *ngIf="emailRef.invalid && emailRef.touched" class="error-message">
+                ⚠️ Please enter a valid email address
+              </p>
+            </div>
+          </div>
+
+          <!-- Group 2: Mobile + DOB -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Mobile Number -->
+            <div class="form-group slide-up" [style.animation-delay]="'0.4s'">
+              <label class="cosmic-label">
+                <span class="label-icon">📱</span>
+                Mobile Number
+              </label>
+              <input type="tel" name="mobile" [(ngModel)]="userData.mobile" required pattern="[0-9]{10}"
+                #mobileRef="ngModel" class="cosmic-input"
+                [class.error]="(mobileRef.invalid && mobileRef.touched) || invalidField['mobile']"
+                [class.shake]="invalidField['mobile']" placeholder="Enter 10-digit mobile number" maxlength="10" />
+              <div class="input-glow"></div>
+              <p *ngIf="mobileRef.invalid && mobileRef.touched" class="error-message">
+                ⚠️ Mobile number must be exactly 10 digits
+              </p>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group slide-up" [style.animation-delay]="'0.5s'">
+              <label class="cosmic-label">
+                <span class="label-icon">🎂</span>
+                Date of Birth
+              </label>
+              <input type="date" name="dateOfBirth" [(ngModel)]="userData.dateOfBirth" required #dobRef="ngModel"
+                class="cosmic-input" [class.error]="(dobRef.invalid && dobRef.touched) || invalidField['dateOfBirth']"
+                [class.shake]="invalidField['dateOfBirth']" />
+              <div class="input-glow"></div>
+              <p *ngIf="dobRef.invalid && dobRef.touched" class="error-message">
+                ⚠️ Date of birth is required for cosmic calculations
+              </p>
+            </div>
+          </div>
+
+          <!-- Group 3: Gender + Goal -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Gender -->
+            <div class="form-group slide-up" [style.animation-delay]="'0.6s'">
+              <label class="cosmic-label">
+                <span class="label-icon">⚧️</span>
+                Gender
+              </label>
+              <div class="gender-options">
+                <label class="gender-option">
+                  <input type="radio" name="gender" [(ngModel)]="userData.gender" value="male" required
+                    #genderRef="ngModel" />
+                  <span class="radio-custom"></span>
+                  <span class="gender-text">Male</span>
+                </label>
+                <label class="gender-option">
+                  <input type="radio" name="gender" [(ngModel)]="userData.gender" value="female" required />
+                  <span class="radio-custom"></span>
+                  <span class="gender-text">Female</span>
+                </label>
+              </div>
+              <p *ngIf="genderRef.invalid && genderRef.touched" class="error-message">
+                ⚠️ Please select your gender for accurate readings
+              </p>
+            </div>
+
+            <!-- User Goal -->
+            <div class="form-group slide-up" [style.animation-delay]="'0.7s'">
+              <label class="cosmic-label">
+                <span class="label-icon">🎯</span>
+                Your Cosmic Quest
+              </label>
+              <input type="text" name="userGoal" [(ngModel)]="userData.userGoal" required #userGoalRef="ngModel"
+                class="cosmic-input"
+                [class.error]="(userGoalRef.invalid && userGoalRef.touched) || invalidField['userGoal']"
+                [class.shake]="invalidField['userGoal']"
+                placeholder="Share your goals, challenges, or what you seek to discover through numerology..." />
+
+              <!-- <input name="userGoal" [(ngModel)]="userData.userGoal" required minlength="10" #userGoal="ngModel"
+                 [class.error]="userGoal.invalid && userGoal.touched"
+                [class.shake]="invalidField['userGoal']"
+                placeholder="Share your goals, challenges, or what you seek to discover through numerology..."> -->
+              <div class="input-glow"></div>
+              <p *ngIf="userGoalRef.invalid && userGoalRef.touched" class="error-message">
+                ⚠️ Please describe your cosmic quest (minimum 10 characters)
+              </p>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="submit-section slide-up" [style.animation-delay]="'0.8s'">
+            <button type="submit" class="cosmic-submit-btn" [disabled]="isSubmitting">
+              <span class="btn-content">
+                <span class="btn-icon">🔮</span>
+                <span class="btn-text">{{ isSubmitting ? 'Calculating Your Cosmic Blueprint...' : 'Begin My Cosmic Journey' }}</span>
+              </span>
+              <div class="btn-glow"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- @if(false){
+  <form #form="ngForm" (ngSubmit)="submitForm(form)"
+    class="space-y-4 p-6 bg-white rounded-xl shadow-lg max-w-md mx-auto mt-8" novalidate>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+      <input type="text" name="fullName" [(ngModel)]="fullName" required minlength="3" #fullNameRef="ngModel"
+        class="w-full p-2 rounded-md shadow-sm border transition-all focus:outline-none"
+        [class.border-red-500]="(fullNameRef.invalid && fullNameRef.touched) || invalidFields.fullName"
+        [class.shake]="invalidFields.fullName" placeholder="e.g., Ankit Sharma" />
+      <p *ngIf="fullNameRef.invalid && fullNameRef.touched" class="text-red-500 text-sm mt-1">
+        Name is required and must be at least 3 characters.
+      </p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+      <input type="email" name="email" [(ngModel)]="email" required email #emailRef="ngModel"
+        class="w-full p-2 rounded-md shadow-sm border transition-all focus:outline-none"
+        [class.border-red-500]="(emailRef.invalid && emailRef.touched) || invalidFields.email"
+        [class.shake]="invalidFields.email" placeholder="e.g., you@example.com" />
+      <p *ngIf="emailRef.invalid && emailRef.touched" class="text-red-500 text-sm mt-1">
+        A valid email is required.
+      </p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+      <input type="tel" name="mobile" [(ngModel)]="mobile" required pattern="[0-9]{10}" #mobileRef="ngModel"
+        class="w-full p-2 rounded-md shadow-sm border transition-all focus:outline-none"
+        [class.border-red-500]="(mobileRef.invalid && mobileRef.touched) || invalidFields.mobile"
+        [class.shake]="invalidFields.mobile" placeholder="e.g., 9876543210" />
+      <p *ngIf="mobileRef.invalid && mobileRef.touched" class="text-red-500 text-sm mt-1">
+        Mobile number must be 10 digits.
+      </p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+      <input type="date" name="dateOfBirth" [(ngModel)]="dateOfBirth" required #dobRef="ngModel"
+        class="w-full p-2 rounded-md shadow-sm border transition-all focus:outline-none"
+        [class.border-red-500]="(dobRef.invalid && dobRef.touched) || invalidFields.dateOfBirth"
+        [class.shake]="invalidFields.dateOfBirth" />
+      <p *ngIf="dobRef.invalid && dobRef.touched" class="text-red-500 text-sm mt-1">
+        Date of birth is required.
+      </p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+      <div class="flex space-x-4">
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="gender" [(ngModel)]="gender" [value]="'male'" required #genderRef="ngModel"
+            class="form-radio text-blue-600" />
+          <span>Male</span>
+        </label>
+
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="gender" [(ngModel)]="gender" [value]="'female'" required
+            class="form-radio text-blue-600" />
+          <span>Female</span>
+        </label>
+      </div>
+      <p *ngIf="genderRef.invalid && genderRef.touched" class="text-red-500 text-sm mt-1">
+        Please select a gender.
+      </p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">
+        What is your goal or challenge you're currently facing?
+      </label>
+      <textarea name="userGoal" [(ngModel)]="userGoal" required minlength="10" #goalRef="ngModel"
+        class="w-full p-2 rounded-md shadow-sm border transition-all focus:outline-none"
+        [class.border-red-500]="(goalRef.invalid && goalRef.touched)"
+        placeholder="e.g., I want to know how my numbers affect my career choices..." rows="3"></textarea>
+      <p *ngIf="goalRef.invalid && goalRef.touched" class="text-red-500 text-sm mt-1">
+        Please describe your goal or challenges (minimum 10 characters).
+      </p>
+    </div>
+
+
+    <button type="submit" class="w-full bg-blue-600 text-white font-medium py-2 rounded-md hover:bg-blue-700 transition">
+      🔮 Calculate My Numbers
+    </button>
+  </form>
+} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="dialog" aria-modal="true" aria-labelledby="dialog-title" class="relative z-10" *ngIf="showModal">
+  <div aria-hidden="true" class="fixed inset-0 bg-gray-500/75 transition-opacity"></div>
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <div class="flex w-100 gap-4 items-center justify-center">
+                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-yellow-100 sm:mx-0 sm:size-10">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="size-6 text-yellow-600">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+                    <line x1="12" y1="8" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                  </svg>
+                </div>
+                <h3 id="dialog-title" class="text-base font-semibold text-gray-900">Please Confirm</h3>
+              </div>
+              <div class="flex justify-center items-center">
+                <div class="mt-2">
+                  <div class="mt-4 space-y-2 p-4 rounded">
+                    <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
+                      <div class="font-semibold text-gray-600">Name:</div>
+                      <div class="text-gray-900">{{ userData?.fullName | titlecase}} <span class="bold" *ngIf="existingUserData?.name != undefined && existingUserData?.name != userData?.fullName"> / {{ existingUserData?.name | titlecase }}</span></div>
+
+                      <!-- @if(existingUserData?.name != undefined && existingUserData?.name != userData?.fullName){
+                        <div class="font-semibold text-gray-600">Existing Name:</div>
+                        <div class="text-gray-900"><span class="bold">{{existingUserData?.name | titlecase}}</span></div>
+                      } -->
+
+                      <div class="font-semibold text-gray-600">Date of Birth:</div>
+                      <div class="text-gray-900">{{ userData?.dateOfBirth | date: 'd MMMM y' }} <span class="bold" *ngIf="existingUserData?.name != undefined && existingUserData?.dob != userData?.dateOfBirth"> / {{ userData?.dateOfBirth | date: 'd MMMM y' }}</span></div>
+
+                      <div class="font-semibold text-gray-600">Gender:</div>
+                      <div class="text-gray-900">{{ userData?.gender | titlecase }} <span class="bold" *ngIf="existingUserData?.name != undefined && existingUserData?.gender != userData?.gender"> / {{existingUserData?.gender}}</span></div>
+
+                      <div class="font-semibold text-gray-600">Email:</div>
+                      <div class="text-gray-900">{{ userData?.email }} <span class="bold" *ngIf="existingUserData?.name != undefined && existingUserData?.email != userData?.email"> / {{existingUserData?.email}}</span></div>
+
+                      <div class="font-semibold text-gray-600">Mobile:</div>
+                      <div class="text-gray-900">{{ userData?.mobile }} <span class="bold" *ngIf="existingUserData?.name != undefined && existingUserData?.mobile != userData?.mobile"> / {{existingUserData?.mobile}}</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="px-4 py-3 sm:flex sm:px-6 justify-end">
+          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto mb-2" (click)="isSubmitting=showModal=false">Cancel</button>
+          <button type="button" class="inline-flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold shadow-xs hover:bg-emerald-500 sm:ml-3 sm:w-auto mb-2" (click)="infoConfirmed()" style="color: #fff !important;" *ngIf="!existingUserData">Confirm</button>
+          <button type="button" class="inline-flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold shadow-xs hover:bg-emerald-500 sm:ml-3 sm:w-auto mb-2" (click)="infoConfirmed(true)" style="color: #fff !important;" *ngIf="existingUserData">Change Data</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

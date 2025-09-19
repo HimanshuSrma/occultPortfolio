@@ -1,0 +1,59 @@
+
+    <section id="testimonials" class="section testimonials">
+      <div class="container">
+        <h2 class="section-title">Client Testimonials</h2>
+        <p class="section-subtitle">
+          Real stories from satisfied clients who experienced positive transformations
+        </p>
+        
+        <div class="testimonials-grid">
+          <div class="testimonial-card card" *ngFor="let testimonial of testimonials">
+            <div class="testimonial-content">
+              <div class="stars">
+                <span *ngFor="let star of getStars(testimonial.rating)">⭐</span>
+              </div>
+              <p class="testimonial-text">"{{ testimonial.text }}"</p>
+              <div class="testimonial-author">
+                <img [src]="testimonial.image" [alt]="testimonial.name">
+                <div class="author-info">
+                  <h4>{{ testimonial.name }}</h4>
+                  <p>{{ testimonial.title }}</p>
+                  <span class="location">{{ testimonial.location }}</span>
+                </div>
+              </div>
+              <div class="testimonial-results">
+                <div class="result-item" *ngFor="let result of testimonial.results">
+                  <span class="result-icon">{{ result.icon }}</span>
+                  <span class="result-text">{{ result.text }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="success-stats">
+          <div class="stat-card" *ngFor="let stat of successStats">
+            <div class="stat-icon">{{ stat.icon }}</div>
+            <div class="stat-number">{{ stat.number }}</div>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        </div>
+        
+        <div class="video-testimonials">
+          <h3>Video Testimonials</h3>
+          <div class="video-grid">
+            <div class="video-placeholder" *ngFor="let video of videoTestimonials">
+              <div class="video-thumbnail">
+                <img [src]="video.thumbnail" [alt]="video.title">
+                <div class="play-button">▶</div>
+              </div>
+              <div class="video-info">
+                <h4>{{ video.title }}</h4>
+                <p>{{ video.description }}</p>
+                <span class="video-duration">{{ video.duration }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

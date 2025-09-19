@@ -1,0 +1,28 @@
+
+    <header [class]="'header ' + (isScrolled ? 'scrolled' : '')">
+      <nav class="nav">
+        <div class="container">
+          <div class="nav-content">
+            <div class="logo">
+              <h2>Himmanshu Sharma</h2>
+              <span>Vastu • Numerology • Astrology</span>
+            </div>
+            
+            <div class="nav-menu" [class.active]="isMobileMenuOpen">
+              <a href="/home#home" (click)="closeMobileMenu()">Home</a>
+              <a href="/home#about" (click)="closeMobileMenu()">About</a>
+              <a href="/home#services" (click)="closeMobileMenu()">Services</a>
+              <a href="/home#portfolio" (click)="closeMobileMenu()">Portfolio</a>
+              <a href="/home#testimonials" (click)="closeMobileMenu()">Testimonials</a>
+              <a href="/home#contact" (click)="closeMobileMenu()">Contact</a>
+            </div>
+            
+            <button class="mobile-toggle" (click)="toggleMobileMenu()">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>

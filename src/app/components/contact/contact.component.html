@@ -1,0 +1,231 @@
+
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">
+          Ready to transform your space? Let's discuss your Vastu needs and create a harmonious environment
+        </p>
+        
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <div class="contact-items">
+              <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div class="contact-details">
+                  <h4>Phone</h4>
+                  <p><a href="tel:+91 7835912569">+91 78359 12569</a></p>
+                  <!-- <p>+91 87654 32109</p> -->
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div class="contact-details">
+                  <h4>Email</h4>
+                  <p><a href="mailto:himmanshusharma45@gmail.com">himmanshusharma45&#64;gmail.com</a></p>
+                  <!-- <p>himmanshu&#64;ancientsciences.com</p> -->
+                  <!-- <p>info&#64;ancientsciences.com</p> -->
+                  <!-- <p>himmanshu@ancientsciences.com</p>
+                  <p>info@ancientsciences.com</p> -->
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-details">
+                  <h4>Office Address</h4>
+                  <p>Nobel Enclave, Maruti Udyog<br>
+                     Sector 18, Gurugram<br>
+                     Haryana 122015</p>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-icon">🕐</div>
+                <div class="contact-details">
+                  <h4>Working Hours</h4>
+                  <p>Mon - Sat: 9:00 AM - 7:00 PM</p>
+                  <p>Sunday: 10:00 AM - 4:00 PM</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="consultation-types">
+              <h4>Consultation Options</h4>
+              <div class="consultation-options">
+                <div class="option">
+                  <span class="option-icon">🏠</span>
+                  <span>Site Visit</span>
+                </div>
+                <div class="option">
+                  <span class="option-icon">💻</span>
+                  <span>Online Consultation</span>
+                </div>
+                <div class="option">
+                  <span class="option-icon">📞</span>
+                  <span>Phone Consultation</span>
+                </div>
+                <div class="option">
+                  <span class="option-icon">🎯</span>
+                  <span>Combined Reading</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form-container">
+            <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+              <h3>Book Your Consultation</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input 
+                    type="text" 
+                    id="firstName" 
+                    name="firstName"
+                    [(ngModel)]="formData.firstName"
+                    required
+                    #firstName="ngModel"
+                  >
+                  <span class="error" *ngIf="firstName.invalid && firstName.touched">
+                    First name is required
+                  </span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input 
+                    type="text" 
+                    id="lastName" 
+                    name="lastName"
+                    [(ngModel)]="formData.lastName"
+                    required
+                    #lastName="ngModel"
+                  >
+                  <span class="error" *ngIf="lastName.invalid && lastName.touched">
+                    Last name is required
+                  </span>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    [(ngModel)]="formData.email"
+                    required
+                    email
+                    #email="ngModel"
+                  >
+                  <span class="error" *ngIf="email.invalid && email.touched">
+                    Valid email is required
+                  </span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="phone">Phone Number *</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone"
+                    [(ngModel)]="formData.phone"
+                    required
+                    #phone="ngModel"
+                  >
+                  <span class="error" *ngIf="phone.invalid && phone.touched">
+                    Phone number is required
+                  </span>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="serviceType">Service Type *</label>
+                <select 
+                  id="serviceType" 
+                  name="serviceType"
+                  [(ngModel)]="formData.serviceType"
+                  required
+                  #serviceType="ngModel"
+                >
+                  <option value="" selected disabled>Select Service</option>
+                  <option value="vastu-residential">Residential Vastu</option>
+                  <option value="vastu-commercial">Commercial Vastu</option>
+                  <option value="vastu-construction">Construction Guidance</option>
+                  <option value="numerology-life">Life Path Numerology</option>
+                  <option value="numerology-business">Business Numerology</option>
+                  <option value="numerology-mobile">Mobile Number Analysis</option>
+                  <option value="astrology-birth">Birth Chart Reading</option>
+                  <option value="astrology-marriage">Marriage Compatibility</option>
+                  <option value="astrology-gemstone">Gemstone Consultation</option>
+                  <option value="combined">Combined Consultation</option>
+                </select>
+                <span class="error" *ngIf="serviceType.invalid && serviceType.touched">
+                  Please select a service type
+                </span>
+              </div>
+              
+              <div class="form-group">
+                <label for="consultationType">Consultation Type *</label>
+                <select 
+                  id="consultationType" 
+                  name="consultationType"
+                  [(ngModel)]="formData.consultationType"
+                  required
+                  #consultationType="ngModel"
+                >
+                  <option value="" selected disabled>Select Consultation Type</option>
+                  <option value="site-visit">Site Visit</option>
+                  <option value="online">Online Consultation</option>
+                  <option value="phone">Phone Consultation</option>
+                </select>
+                <span class="error" *ngIf="consultationType.invalid && consultationType.touched">
+                  Please select consultation type
+                </span>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea 
+                  id="message" 
+                  name="message"
+                  [(ngModel)]="formData.message"
+                  rows="5"
+                  placeholder="Please describe your requirements, property details, or any specific concerns..."
+                ></textarea>
+              </div>
+              
+              <button 
+                type="submit" 
+                class="btn btn-primary submit-btn"
+                [disabled]="contactForm.invalid || isSubmitting"
+              >
+                {{ isSubmitting ? 'Sending...' : 'Book Consultation' }}
+              </button>
+              
+              <div class="form-note">
+                <p>* Required fields</p>
+                <p>We'll respond within 24 hours to confirm your consultation.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <div class="map-section">
+          <h3>Find Our Office</h3>
+          <div class="map-placeholder">
+            <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg" alt="Office Location Map">
+            <div class="map-overlay">
+              <div class="map-info">
+                <h4>Our Office Location</h4>
+                <p>Nobel Enclave, Maruti Udyog, Sector 18, Gurugram, Haryana</p>
+                <a href="https://maps.app.goo.gl/fZrLn3rnDydYgasr6" target="_blank" class="btn btn-outline">Get Directions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
