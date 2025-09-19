@@ -67,7 +67,7 @@ body {
 
 .btn-primary {
   background: var(--primary-gold);
-  color: var(--white);
+  color: var(--white) !important;
 }
 
 .btn-primary:hover {

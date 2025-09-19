@@ -11,10 +11,12 @@ import { Router } from "@angular/router";
 })
 export class ServicesComponent {
   constructor(private router: Router) {}
-
+  
   navigateTo(route: string) {
-    this.router.navigate([route]);
+    const [path, fragment] = route.split('#');
+    this.router.navigate([path], { fragment });
   }
+
 
   services = [
     {
@@ -86,24 +88,24 @@ export class ServicesComponent {
       description: "Comprehensive report covering detailed numerology insights",
       route: "/reports",
     },
-    {
-      icon: "🌠",
-      title: "1 Year Cosmic Forecast",
-      description: "Numerology predictions and guidance for the coming year",
-      route: "/reports",
-    },
-    {
-      icon: "📅",
-      title: "3 Year Life Cycle",
-      description: "Analysis of three-year numerology cycles for planning",
-      route: "/reports",
-    },
-    {
-      icon: "🔮",
-      title: "5 Year Destiny Path",
-      description: "Insights into destiny patterns across a five-year span",
-      route: "/reports",
-    },
+    // {
+    //   icon: "🌠",
+    //   title: "1 Year Cosmic Forecast",
+    //   description: "Numerology predictions and guidance for the coming year",
+    //   route: "/reports",
+    // },
+    // {
+    //   icon: "📅",
+    //   title: "3 Year Life Cycle",
+    //   description: "Analysis of three-year numerology cycles for planning",
+    //   route: "/reports",
+    // },
+    // {
+    //   icon: "🔮",
+    //   title: "5 Year Destiny Path",
+    //   description: "Insights into destiny patterns across a five-year span",
+    //   route: "/reports",
+    // },
     {
       icon: "📞",
       title: "Phone Consultation",
@@ -122,6 +124,12 @@ export class ServicesComponent {
       title: "Architectural Guidance",
       description:
         "Advice during construction or renovation for Vastu alignment",
+      route: "/home#contact",
+    },
+    {
+      icon: "🩺",
+      title: "Medical Astrology",
+      description: "Astrological insights for health and wellness",
       route: "/home#contact",
     },
     // {

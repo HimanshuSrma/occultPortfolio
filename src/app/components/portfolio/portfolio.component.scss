@@ -25,7 +25,7 @@
     .filter-btn:hover,
     .filter-btn.active {
       background: var(--primary-gold);
-      color: var(--white);
+      color: var(--white) !important;
     }
     
     .portfolio-grid {
