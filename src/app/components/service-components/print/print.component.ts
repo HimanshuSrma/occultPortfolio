@@ -45,7 +45,8 @@ export class PrintComponent implements OnChanges {
   readingGuide:any;
   // ##################################################
   numYears: number = 3; // can be set via UI dropdown
-  noteHTML:any
+  noteHTML:any;
+  downloadFileName: string = 'report';
 
   
   constructor(private numerologyService: NumerologyService, private firestoreService: FirestoreService) {
@@ -59,6 +60,7 @@ export class PrintComponent implements OnChanges {
       this.requestDataType = 'full-report';
       this.generateReports();
     }
+    this.downloadFileName = `${this.result?.name || 'report'}_${this.requestDataType}_${dayjs().format('YYYYMMDD_HHmmss')}`;
   }
 
   // Main generator - rebuilds arrays whenever numYears changes

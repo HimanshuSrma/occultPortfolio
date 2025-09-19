@@ -63,14 +63,14 @@ export class ServicesGridComponent {
   //       'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1))',
   //   },
 
-  {
-    id: 'consultation',
-    title: 'Personal Consultation',
-    description: 'Get one-on-one guidance from our expert numerologist for personalized cosmic insights and life solutions',
-    icon: '🧙‍♂️',
-    route: '/personal-consultation',
-    gradient: 'linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.1))'
-  },
+  // {
+  //   id: 'consultation',
+  //   title: 'Personal Consultation',
+  //   description: 'Get one-on-one guidance from our expert numerologist for personalized cosmic insights and life solutions',
+  //   icon: '🧙‍♂️',
+  //   route: '/personal-consultation',
+  //   gradient: 'linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.1))'
+  // },
   {
       id: 'name',
       title: 'Name Numerology',

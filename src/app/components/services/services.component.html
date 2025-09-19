@@ -22,7 +22,7 @@
         <div class="additional-services">
           <h3>Additional Services</h3>
           <div class="additional-grid">
-            <div class="additional-item" *ngFor="let item of additionalServices">
+            <div class="additional-item cursor-pointer" *ngFor="let item of additionalServices" (click)="navigateTo(item.route)">
               <div class="additional-icon">{{ item.icon }}</div>
               <div class="additional-content">
                 <h4>{{ item.title }}</h4>
