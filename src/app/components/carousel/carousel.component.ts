@@ -67,7 +67,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
         { icon: '⚡', text: 'Energy Balance' }
       ],
       primaryAction: { text: 'Start Wellness Journey', link: '#contact' },
-      secondaryAction: { text: 'Explore Health Solutions', link: '#services' }
+      secondaryAction: { text: 'Explore Services', link: '#services' }
     },
     {
       icon: '💕',
@@ -81,7 +81,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
         { icon: '👨‍👩‍👧‍👦', text: 'Family Unity' }
       ],
       primaryAction: { text: 'Strengthen Your Relationships', link: '#contact' },
-      secondaryAction: { text: 'Relationship Guide', link: '#services' }
+      secondaryAction: { text: 'Explore Services', link: '#services' }
     },
     {
       icon: '🚀',
@@ -95,7 +95,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
         { icon: '👑', text: 'Leadership' }
       ],
       primaryAction: { text: 'Accelerate Career Growth', link: '#contact' },
-      secondaryAction: { text: 'Career Services', link: '#services' }
+      secondaryAction: { text: 'Explore Services', link: '#services' }
     },
     {
       icon: '💰',
@@ -109,7 +109,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
         { icon: '📊', text: 'Investment Timing' }
       ],
       primaryAction: { text: 'Unlock Wealth Potential', link: '#contact' },
-      secondaryAction: { text: 'View Services', link: '#services' }
+      secondaryAction: { text: 'Explore Services', link: '#services' }
     },
   ];
 

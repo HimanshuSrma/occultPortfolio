@@ -155,12 +155,12 @@
                   <option value="vastu-residential">Residential Vastu</option>
                   <option value="vastu-commercial">Commercial Vastu</option>
                   <option value="vastu-construction">Construction Guidance</option>
-                  <option value="numerology-life">Life Path Numerology</option>
-                  <option value="numerology-business">Business Numerology</option>
+                  <option value="name-numerology">Name Numerology</option>
                   <option value="numerology-mobile">Mobile Number Analysis</option>
+                  <option value="numerology-business">Business Numerology</option>
                   <option value="astrology-birth">Birth Chart Reading</option>
                   <option value="astrology-marriage">Marriage Compatibility</option>
-                  <option value="astrology-gemstone">Gemstone Consultation</option>
+                  <option value="medical-astrology">Medical Astrology</option>
                   <option value="combined">Combined Consultation</option>
                 </select>
                 <span class="error" *ngIf="serviceType.invalid && serviceType.touched">
@@ -179,8 +179,8 @@
                 >
                   <option value="" selected disabled>Select Consultation Type</option>
                   <option value="site-visit">Site Visit</option>
-                  <option value="online">Online Consultation</option>
                   <option value="phone">Phone Consultation</option>
+                  <option value="online">Online Consultation</option>
                 </select>
                 <span class="error" *ngIf="consultationType.invalid && consultationType.touched">
                   Please select consultation type
@@ -198,13 +198,7 @@
                 ></textarea>
               </div>
               
-              <button 
-                type="submit" 
-                class="btn btn-primary submit-btn"
-                [disabled]="contactForm.invalid || isSubmitting"
-              >
-                {{ isSubmitting ? 'Sending...' : 'Book Consultation' }}
-              </button>
+              <button type="submit" class="btn btn-primary submit-btn" [disabled]="contactForm.invalid || isSubmitting" aria-label="Book Consultation">{{ isSubmitting ? 'Sending...' : 'Book Consultation' }}</button>
               
               <div class="form-note">
                 <p>* Required fields</p>

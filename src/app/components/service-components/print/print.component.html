@@ -1,12 +1,18 @@
 <div class="container">
   <div class="flex justify-between my-10">
-    <button class="back-btn text-white" (click)="goBack()">
+    <button class="back-btn text-white" (click)="goBack()" aria-label="Back to Dashboard">
       <svg class="text-white" width="20" height="20" viewBox="0 0 24 24" fill="none">
         <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
       Back to Dashboard
     </button>
-    <button class="back-btn text-white" printSectionId="print-section" ngxPrint [printTitle]="downloadFileName" [useExistingCss]="true">
+    <button *ngIf="!isMobile()" class="back-btn text-white" printSectionId="print-section" ngxPrint [printTitle]="downloadFileName" [useExistingCss]="true" aria-label="Save Report">
+      <svg class="rotate-270 text-white" width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      Save Report
+    </button>
+    <button class="back-btn text-white" (click)="downloadAsPdf()" aria-label="Save Report">
       <svg class="rotate-270 text-white" width="20" height="20" viewBox="0 0 24 24" fill="none">
         <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
@@ -61,7 +67,7 @@
     
     <div class="mt-8 bg-indigo-50 border border-indigo-200 rounded-xl shadow w-full mb-6" *ngIf="this.combinationData?.description">
       <div class="border-b">
-        <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+        <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
           <span class="font-medium">Personality Analysis</span>
         </button>
         <div class="px-4 py-2 text-gray-600 transition-all duration-300">
@@ -89,7 +95,7 @@
         <div class="text-sm mt-1 font-medium" [ngClass]="{'text-green-600': nameIsLucky, 'text-red-600': !nameIsLucky }">{{ nameIsLucky ? '✅ Favorable' : '⚠️ Not Favorable' }}</div>
         <div class=" px-2 mt-4 border rounded-xl">
           <ng-container *ngIf="nameData">
-            <button class="w-full border-b py-3 flex justify-between items-center focus:outline-none">
+            <button class="w-full border-b py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
               <span class="font-medium me-3">Name Analysis</span>
             </button>
             
@@ -120,13 +126,13 @@
         
       <div class="px-2 mt-4 rounded-xl">
         <ng-container *ngIf="nameLettersArr.length">
-          <button class="w-full  py-3 flex justify-between items-center focus:outline-none">
+          <button class="w-full  py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
             <span class="font-medium mx-auto">Name Letters Analysis</span>
           </button>
           
           <div *ngFor="let item of nameLettersArr; let i = index">
             <div class="border rounded-lg mb-3">
-              <button class="w-full text-left px-2 py-3 flex justify-between items-center focus:outline-none"><span class="font-medium mx-auto">Letter [<strong class="font-extrabold">{{ item }}</strong>] in your name</span></button>
+              <button class="w-full text-left px-2 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle"><span class="font-medium mx-auto">Letter [<strong class="font-extrabold">{{ item }}</strong>] in your name</span></button>
               <div class="px-2 py-2 text-gray-600 transition-all duration-300 text-center">
                 <div class="mb-3 p-3 bg-purple-50 border border-purple-200 rounded-lg shadow-sm">
                   <div class="font-semibold text-purple-700 mb-1">Strength</div>
@@ -170,7 +176,7 @@
         <div class="text-sm mt-1 font-medium text-center" [ngClass]="{'text-green-600': mobileIsLucky, 'text-red-600': !mobileIsLucky }">{{ mobileIsLucky ? '✅ Favorable' : '⚠️ Not Favorable' }}</div>
         <div class=" px-2 mt-4 border rounded-xl">
           <div class="border-b">
-            <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ result.mobileNumber }}</span></button>
+            <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle"><span class="font-medium">{{ result.mobileNumber }}</span></button>
             
             <div class="py-2 transition-all duration-300">
               <div class="mb-8 p-3 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm">
@@ -232,7 +238,7 @@
         <h3 class="p-[12px] text-center font-bold">Repeted Numbers</h3>
         <div *ngFor="let item of repeatedNumbers; let i = index">
           <div class="mt-4 bg-fuchsia-50 border border-fuchsia-200 rounded-xl shadow w-full">
-            <button class="w-full text-left px-4 py-3 flex justify-center items-center focus:outline-none"><span class="font-medium">{{ item.label }}</span></button>
+            <button class="w-full text-left px-4 py-3 flex justify-center items-center focus:outline-none" aria-label="toggle"><span class="font-medium">{{ item.label }}</span></button>
             <div class="px-4 py-2 text-gray-600 transition-all duration-300 text-justify">
               <p class="mb-3 text-gray-500">{{ item.description }}</p>
               <h3 class="text-md font-bold" *ngIf="item?.excessRemedy">Remedy</h3>
@@ -251,7 +257,7 @@
         <h3 class="p-[12px] text-center font-bold text-red-600">Missing Numbers & Remedies</h3>
         <div *ngFor="let entry of missingRemediesMap; let i = index">
           <div class="bg-blue-50 border-blue-200 border rounded-lg shadow w-full mt-4">
-            <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none"><span class="mx-auto text-md font-semibold text-red-700">Number {{ entry.number }} - ({{entry.title}})</span></button>
+            <button class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle"><span class="mx-auto text-md font-semibold text-red-700">Number {{ entry.number }} - ({{entry.title}})</span></button>
             <div class="px-4 py-2 transition-all duration-300 text-justify">
               <p class="mb-3 text-gray-500">{{ entry?.effect }}</p>
               <h3 class="text-md font-bold" *ngIf="entry.missingRemedies">Remedy</h3>
@@ -327,7 +333,7 @@
       <div class="mt-8 bg-fuchsia-50 border border-fuchsia-200 rounded-xl shadow w-full" *ngIf="personalDay">
         <h3 class="p-[12px] text-center font-bold"> 📆 Personal Day {{ result.personalDay }} 📆</h3>
         <div *ngFor="let item of personalDay.sections; let i = index" class="border-b">
-          <button class="w-full text-left px-4 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ item.type ?? personalDay.title }}</span></button>
+          <button class="w-full text-left px-4 flex justify-between items-center focus:outline-none" aria-label="toggle"><span class="font-medium">{{ item.type ?? personalDay.title }}</span></button>
           <div class="px-4 py-2 text-gray-600 transition-all duration-300 text-justify">
             {{ item.content }}
             <ul class="list-disc list-inside text-sm text-gray-700 mt-1" *ngIf="item?.list">
@@ -346,7 +352,7 @@
       <div class="mt-8 bg-rose-50 border border-rose-200 rounded-xl shadow w-full" *ngIf="personalMonth">
         <h3 class="p-[12px] text-center font-bold"> 📆 Personal Month {{ result.personalMonth }} 📆</h3>
         <div *ngFor="let item of personalMonth.sections; let i = index" class="border-b">
-          <button class="w-full px-4 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ item.type ?? personalMonth.title }}</span></button>
+          <button class="w-full px-4 flex justify-between items-center focus:outline-none" aria-label="toggle"><span class="font-medium">{{ item.type ?? personalMonth.title }}</span></button>
           <div class="px-4 py-2 text-gray-600 transition-all duration-300 text-justify">
             {{ item.content }}
             <ul class="list-disc list-inside text-sm text-gray-700 mt-1" *ngIf="item?.list">
@@ -366,7 +372,7 @@
       
         <h3 class="p-[12px] text-center font-bold">📅 Personal Year {{ result.personalYear }} 📅</h3>
         <div *ngFor="let item of personalYear.sections; let i = index" class="border-b">
-          <button class="w-full text-left px-4 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ item.type ?? personalYear.title }}</span></button>
+          <button class="w-full text-left px-4 flex justify-between items-center focus:outline-none" aria-label="toggle"><span class="font-medium">{{ item.type ?? personalYear.title }}</span></button>
           <div class="px-4 py-2 text-gray-600 transition-all duration-300 text-justify">
             {{ item?.content }}
             <ul class="list-disc list-inside text-sm text-gray-700 mt-1" *ngIf="item?.list">
@@ -385,7 +391,7 @@
       
       <div *ngFor="let m of yearlyMonths;let i=index;">
         <div class="mt-8 bg-rose-50 border border-rose-200 rounded-xl shadow w-full">
-          <button class="w-full text-left px-4 py-2 flex justify-center items-center focus:outline-none">
+          <button class="w-full text-left px-4 py-2 flex justify-center items-center focus:outline-none" aria-label="toggle">
             <span class="font-medium">{{ monthName(m.calendarMonth) }} {{ m.calendarYear }}</span>
             <!-- <span class="font-medium">{{ monthName(m.calendarMonth) }} {{ m.calendarYear }} — Personal Month {{ m.personalMonthNo }}</span> -->
           </button>
@@ -414,7 +420,7 @@
           <h3 class="p-[12px] text-center font-bold">🎯 {{ block.calendarYearLabel }}</h3>
           <!-- <h3 class="p-[12px] text-center font-bold">🎯 {{ block.calendarYearLabel }} — Personal Year {{ block.personalYearNo }}</h3> -->
           <div *ngFor="let item of block.yearData.sections; let i = index" class="border-b">
-            <button class="w-full text-left px-4 py-2 flex justify-between items-center focus:outline-none"><span class="font-medium">{{ item.type ?? block.yearData.title }}</span></button>
+            <button class="w-full text-left px-4 py-2 flex justify-between items-center focus:outline-none" aria-label="toggle"><span class="font-medium">{{ item.type ?? block.yearData.title }}</span></button>
             <div class="px-4 pb-2 text-gray-600 transition-all duration-300 text-justify">
               {{ item.content }}
               <ul class="list-disc list-inside text-sm text-gray-700 mt-1" *ngIf="item?.list">

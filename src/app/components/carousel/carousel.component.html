@@ -30,9 +30,9 @@
       }
     </div>
     <div class="carousel-indicators">
-      <button *ngFor="let slide of slides; let i = index" class="indicator" [class.active]="i === currentSlide" (click)="goToSlide(i)"></button>
+      <button *ngFor="let slide of slides; let i = index" class="indicator" [class.active]="i === currentSlide" (click)="goToSlide(i)" aria-label="indicator"></button>
     </div>
-    <button class="carousel-nav prev" (click)="previousSlide()">‹</button>
-    <button class="carousel-nav next" (click)="nextSlide()">›</button>
+    <button class="carousel-nav prev" (click)="previousSlide()" aria-label="previous">‹</button>
+    <button class="carousel-nav next" (click)="nextSlide()" aria-label="next">›</button>
   </div>
 </div>

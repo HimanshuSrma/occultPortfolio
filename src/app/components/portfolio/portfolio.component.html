@@ -7,34 +7,10 @@
         </p>
         
         <div class="portfolio-filters">
-          <button 
-            class="filter-btn" 
-            [class.active]="activeFilter === 'all'"
-            (click)="setFilter('all')"
-          >
-            All Projects
-          </button>
-          <button 
-            class="filter-btn" 
-            [class.active]="activeFilter === 'vastu'"
-            (click)="setFilter('vastu')"
-          >
-            🏠 Vastu
-          </button>
-          <button 
-            class="filter-btn" 
-            [class.active]="activeFilter === 'numerology'"
-            (click)="setFilter('numerology')"
-          >
-            🔢 Numerology
-          </button>
-          <button 
-            class="filter-btn" 
-            [class.active]="activeFilter === 'astrology'"
-            (click)="setFilter('astrology')"
-          >
-            ⭐ Astrology
-          </button>
+          <button class="filter-btn" [class.active]="activeFilter === 'all'" (click)="setFilter('all')" aria-label="All Cases">All Projects</button>
+          <button class="filter-btn" [class.active]="activeFilter === 'vastu'" (click)="setFilter('vastu')" aria-label="Vastu Cases">🏠 Vastu</button>
+          <button class="filter-btn" [class.active]="activeFilter === 'numerology'" (click)="setFilter('numerology')" aria-label="Numerology Cases">🔢 Numerology</button>
+          <button class="filter-btn" [class.active]="activeFilter === 'astrology'" (click)="setFilter('astrology')"  aria-label="Astrology Cases">⭐ Astrology</button>
         </div>
         
         <div class="portfolio-grid">

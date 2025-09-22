@@ -22,8 +22,7 @@
   <div class="mt-8 bg-indigo-50 border border-indigo-200 rounded-xl shadow w-full mb-6"
     *ngIf="this.combinationData?.description">
     <div class="border-b">
-      <button (click)="toggle('personality', 0)"
-        class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+      <button (click)="toggle('personality', 0)" class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
         <span class="font-medium">Personality Analysis</span>
         <svg class="w-5 h-5 transform transition-transform duration-200"
           [ngClass]="{ 'rotate-180': isOpen('personality', 0) }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,7 +48,7 @@
     <div class="text-sm mt-1 font-medium" [ngClass]="{'text-green-600': nameIsLucky, 'text-red-600': !nameIsLucky }">{{ nameIsLucky ? '✅ Favorable' : '⚠️ Not Favorable' }}</div>
     <div class=" px-2 mt-4 border rounded-xl">
     <ng-container *ngIf="nameData">
-      <button (click)="toggle('name', 0)" class="w-full border-b py-3 flex justify-between items-center focus:outline-none">
+      <button (click)="toggle('name', 0)" class="w-full border-b py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
         <span class="font-medium me-3">Name Analysis</span>
         <svg class="w-5 h-5 transform transition-transform duration-200" [ngClass]="{ 'rotate-180': isOpen('name', 0) }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -74,7 +73,7 @@
 
 
     <ng-container *ngIf="nameLettersArr.length">
-      <button (click)="toggle('nameL', 1)" class="w-full  py-3 flex justify-between items-center focus:outline-none">
+      <button (click)="toggle('nameL', 1)" class="w-full  py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
         <span class="font-medium me-3">Name Letters Analysis</span>
         <svg class="w-5 h-5 transform transition-transform duration-200" [ngClass]="{ 'rotate-180': isOpen('nameL', 1) }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -83,7 +82,7 @@
 
       <div *ngIf="isOpen('nameL', 1)" class=" py-2 text-gray-600 transition-all duration-300 border rounded-xl">
         <div *ngFor="let item of nameLettersArr; let i = index" class="border-b">
-          <button (click)="toggle('nameLetter', i)" class="w-full text-left px-2 py-3 flex justify-between items-center focus:outline-none">
+          <button (click)="toggle('nameLetter', i)" class="w-full text-left px-2 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
             <span class="font-medium">{{ item }}</span>
             <svg class="w-5 h-5 transform transition-transform duration-200" [ngClass]="{ 'rotate-180': isOpen('nameLetter', i) }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -138,8 +137,7 @@
     <h3 class="p-[12px] text-center font-bold"> 📆 Personal Day {{ result.personalDay }} 📆</h3>
 
     <div *ngFor="let item of personalDay.sections; let i = index" class="border-b">
-      <button (click)="toggle('personalDay', i)"
-        class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+      <button (click)="toggle('personalDay', i)" class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
         <span class="font-medium">{{ item.type ?? personalDay.title }}</span>
         <svg class="w-5 h-5 transform transition-transform duration-200"
           [ngClass]="{ 'rotate-180': isOpen('personalDay', i) }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,8 +161,7 @@
     <h3 class="p-[12px] text-center font-bold"> 📆 Personal Month {{ result.personalMonth }} 📆</h3>
 
     <div *ngFor="let item of personalMonth.sections; let i = index" class="border-b">
-      <button (click)="toggle('personalMonth', i)"
-        class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+      <button (click)="toggle('personalMonth', i)" class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
         <span class="font-medium">{{ item.type ?? personalMonth.title }}</span>
         <svg class="w-5 h-5 transform transition-transform duration-200"
           [ngClass]="{ 'rotate-180': isOpen('personalMonth', i) }" fill="none" stroke="currentColor"
@@ -187,8 +184,7 @@
   <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl shadow w-full" *ngIf="personalYear">
     <h3 class="p-[12px] text-center font-bold">📅 Personal Year {{ result.personalYear }} 📅</h3>
     <div *ngFor="let item of personalYear.sections; let i = index" class="border-b">
-      <button (click)="toggle('personalYear', i)"
-        class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+      <button (click)="toggle('personalYear', i)" class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
         <span class="font-medium">{{ item.type ?? personalYear.title }}</span>
         <svg class="w-5 h-5 transform transition-transform duration-200"
           [ngClass]="{ 'rotate-180': isOpen('personalYear', i) }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -226,7 +222,7 @@
     
     <div class=" px-2 mt-4 border rounded-xl">
     <div class="border-b">
-      <button (click)="toggle('mobileData', 0)" class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+      <button (click)="toggle('mobileData', 0)" class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
         <span class="font-medium">{{ result.mobileNumber }}</span>
         <svg class="w-5 h-5 transform transition-transform duration-200"
           [ngClass]="{ 'rotate-180': isOpen('mobileData', 0) }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -318,8 +314,7 @@
   <div class="mt-8 bg-fuchsia-50 border border-fuchsia-200 rounded-xl shadow w-full" *ngIf="repeatedNumbers?.length">
     <h3 class="p-[12px] text-center font-bold">Repeted Numbers</h3>
     <div *ngFor="let item of repeatedNumbers; let i = index" class="border-b">
-      <button (click)="toggle('personalDay', i)"
-        class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+      <button (click)="toggle('personalDay', i)" class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
         <span class="font-medium">{{ item.label }}</span>
         <svg class="w-5 h-5 transform transition-transform duration-200"
           [ngClass]="{ 'rotate-180': isOpen('personalDay', i) }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -349,8 +344,7 @@
     <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl shadow w-full">
       <h3 class="p-[12px] text-center font-bold text-red-600">Missing Numbers & Remedies</h3>
       <div *ngFor="let entry of missingRemediesMap; let i = index" class="border-b">
-        <button (click)="toggle('personalYear', i)"
-          class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none">
+        <button (click)="toggle('personalYear', i)" class="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none" aria-label="toggle">
           <span class="text-md font-semibold text-red-700">Number {{ entry.number }} - ({{entry.title}})</span>
           <svg class="w-5 h-5 transform transition-transform duration-200"
             [ngClass]="{ 'rotate-180': isOpen('personalYear', i) }" fill="none" stroke="currentColor"
