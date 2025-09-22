@@ -623,7 +623,7 @@
               <!-- Name Analysis Accordion -->
               <div class="name-analysis" *ngIf="nameData">
                 <div class="cosmic-accordion">
-                  <button class="accordion-header" (click)="toggle('name', 0)">
+                  <button class="accordion-header" (click)="toggle('name', 0)" aria-label="toggle">
                     <div class="header-content">
                       <span class="section-icon">🔮</span>
                       <span class="section-title mb-0">Name Analysis</span>
@@ -663,7 +663,7 @@
 
                 <!-- Name Letters Analysis -->
                 <div class="cosmic-accordion" *ngIf="nameLettersArr.length">
-                  <button class="accordion-header" (click)="toggle('nameL', 1)">
+                  <button class="accordion-header" (click)="toggle('nameL', 1)" aria-label="toggle">
                     <div class="header-content">
                       <span class="section-icon">🔤</span>
                       <span class="section-title mb-0">Sacred Letters Analysis</span>
@@ -677,7 +677,7 @@
                   <div *ngIf="isOpen('nameL', 1)" class="accordion-content p-[12px]">
                     <div class="letters-grid">
                       <div *ngFor="let item of nameLettersArr; let i = index" class="letter-card">
-                        <button class="letter-header" (click)="toggle('nameLetter', i)">
+                        <button class="letter-header" (click)="toggle('nameLetter', i)" aria-label="toggle">
                           <div class="letter-symbol">{{ item }}</div>
                           <svg class="chevron" [class.rotated]="isOpen('nameLetter', i)" width="16" height="16"
                             viewBox="0 0 24 24" fill="none">
@@ -741,7 +741,7 @@
               </div>
 
               <div class="cosmic-accordion">
-                <button class="accordion-header" (click)="toggle('mobileData', 0)">
+                <button class="accordion-header" (click)="toggle('mobileData', 0)" aria-label="toggle">
                   <span class="section-title mb-0">{{ result.mobileNumber }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('mobileData', 0)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
@@ -816,7 +816,7 @@
             <div class="cosmic-accordion repeated-numbers mt-[0px]">
               <div class="accordion-title">🔄 Amplified Cosmic Numbers</div>
               <div *ngFor="let item of repeatedNumbers; let i = index" class="accordion-item">
-                <button class="accordion-header" (click)="toggle('repeatedNumbers', i)">
+                <button class="accordion-header" (click)="toggle('repeatedNumbers', i)" aria-label="toggle">
                   <span class="section-title mb-0">{{ item.label }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('repeatedNumbers', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
@@ -849,7 +849,7 @@
             <div class="cosmic-accordion missing-remedies mt-[0px]">
               <div class="accordion-title">🚫 Missing Cosmic Numbers & Divine Remedies</div>
               <div *ngFor="let entry of missingRemediesMap; let i = index" class="accordion-item">
-                <button class="accordion-header" (click)="toggle('missingRemedies', i)">
+                <button class="accordion-header" (click)="toggle('missingRemedies', i)" aria-label="toggle">
                   <span class="section-title mb-0">Number {{ entry.number }} - {{ entry.title }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('missingRemedies', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
@@ -953,7 +953,7 @@
             <div class="cosmic-accordion personal-day">
               <div class="accordion-title">📆 Personal Day {{ result.personalDay }} Analysis</div>
               <div *ngFor="let item of personalDay.sections; let i = index" class="accordion-item">
-                <button class="accordion-header" (click)="toggle('personalDay', i)">
+                <button class="accordion-header" (click)="toggle('personalDay', i)" aria-label="toggle">
                   <span class="section-title mb-0">{{ item.type ?? personalDay?.title }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('personalDay', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
@@ -976,7 +976,7 @@
             <div class="cosmic-accordion personal-month">
               <div class="accordion-title">🌙 Personal Month {{ result.personalMonth }} Analysis</div>
               <div *ngFor="let item of personalMonth.sections; let i = index" class="accordion-item">
-                <button class="accordion-header" (click)="toggle('personalMonth', i)">
+                <button class="accordion-header" (click)="toggle('personalMonth', i)" aria-label="toggle">
                   <span class="section-title mb-0">{{ item.type ?? personalMonth?.title }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('personalMonth', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
@@ -999,7 +999,7 @@
             <div class="cosmic-accordion personal-year">
               <div class="accordion-title">⭐ Personal Year {{ result.personalYear }} Analysis</div>
               <div *ngFor="let item of personalYear.sections; let i = index" class="accordion-item">
-                <button class="accordion-header" (click)="toggle('personalYear', i)">
+                <button class="accordion-header" (click)="toggle('personalYear', i)" aria-label="toggle">
                   <span class="section-title mb-0">{{ item.type ?? personalYear.title }}</span>
                   <svg class="chevron" [class.rotated]="isOpen('personalYear', i)" width="20" height="20"
                     viewBox="0 0 24 24" fill="none">
@@ -1037,7 +1037,7 @@
                 <div class="accordion-title">{{ monthName(m.calendarMonth) }} {{ m.calendarYear }}</div>
                 <!-- <div class="accordion-title">🌙 {{ monthName(m.calendarMonth) }} {{ m.calendarYear }} - Personal Month {{ m.personalMonthNo }} Analysis</div> -->
                 <div *ngFor="let item of m.data.sections; let i = index" class="accordion-item">
-                  <button class="accordion-header" (click)="reportToggle(monthIndex, i)">
+                  <button class="accordion-header" (click)="reportToggle(monthIndex, i)" aria-label="toggle">
                     <span class="section-title mb-0">{{ item.type ?? m.data.title }}</span>
                     <svg class="chevron" [class.rotated]="reportIsOpen(monthIndex, i)" width="20" height="20" viewBox="0 0 24 24" fill="none">
                       <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1067,7 +1067,7 @@
                   <div class="accordion-title">{{ block.calendarYearLabel }}</div>
                   <!-- <div class="accordion-title">⭐ {{ block.calendarYearLabel }} - Personal Year {{ block.personalYearNo }} Analysis</div> -->
                   <div *ngFor="let item of block.yearData.sections; let i = index" class="accordion-item">
-                    <button class="accordion-header" (click)="toggle(blockIndex, i)">
+                    <button class="accordion-header" (click)="toggle(blockIndex, i)" aria-label="toggle">
                       <span class="section-title mb-0">{{ item.type ?? block.yearData.title }}</span>
                       <svg class="chevron" [class.rotated]="isOpen(blockIndex, i)" width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

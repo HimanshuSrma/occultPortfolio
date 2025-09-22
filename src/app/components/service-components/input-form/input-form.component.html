@@ -132,7 +132,7 @@
 
           <!-- Submit Button -->
           <div class="submit-section slide-up" [style.animation-delay]="'0.8s'">
-            <button type="submit" class="cosmic-submit-btn" [disabled]="isSubmitting">
+            <button type="submit" class="cosmic-submit-btn" [disabled]="isSubmitting" aria-label="Generate Report">
               <span class="btn-content">
                 <span class="btn-icon">🔮</span>
                 <span class="btn-text">{{ isSubmitting ? 'Calculating Your Cosmic Blueprint...' : 'Begin My Cosmic Journey' }}</span>
@@ -254,7 +254,7 @@
 
 
 
-<div role="dialog" aria-modal="true" aria-labelledby="dialog-title" class="relative z-10" *ngIf="showModal">
+<!-- <div role="dialog" aria-modal="true" aria-labelledby="dialog-title" class="relative z-10" *ngIf="showModal">
   <div aria-hidden="true" class="fixed inset-0 bg-gray-500/75 transition-opacity"></div>
   <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
@@ -277,11 +277,6 @@
                     <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
                       <div class="font-semibold text-gray-600">Name:</div>
                       <div class="text-gray-900">{{ userData?.fullName | titlecase}} <span class="bold" *ngIf="existingUserData?.name != undefined && existingUserData?.name != userData?.fullName"> / {{ existingUserData?.name | titlecase }}</span></div>
-
-                      <!-- @if(existingUserData?.name != undefined && existingUserData?.name != userData?.fullName){
-                        <div class="font-semibold text-gray-600">Existing Name:</div>
-                        <div class="text-gray-900"><span class="bold">{{existingUserData?.name | titlecase}}</span></div>
-                      } -->
 
                       <div class="font-semibold text-gray-600">Date of Birth:</div>
                       <div class="text-gray-900">{{ userData?.dateOfBirth | date: 'd MMMM y' }} <span class="bold" *ngIf="existingUserData?.name != undefined && existingUserData?.dob != userData?.dateOfBirth"> / {{ userData?.dateOfBirth | date: 'd MMMM y' }}</span></div>
@@ -308,4 +303,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

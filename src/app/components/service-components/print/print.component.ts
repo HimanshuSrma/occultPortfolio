@@ -6,7 +6,9 @@ import { mustExcludePairs } from '../../../../assets/data/data';
 import { NumerologyService } from '../../../services/numerology.service';
 import { FirestoreService } from '../../../services/firestore.service';
 import { NgxPrintModule } from 'ngx-print';
+// @ts-ignore
 import dayjs from 'dayjs';
+import html2pdf from 'html2pdf.js';
 @Component({
   selector: 'app-print',
   imports: [CommonModule, NgxPrintModule, HttpClientModule],
@@ -326,4 +328,34 @@ export class PrintComponent implements OnChanges {
   goBack() {
     this.requestDataInResult.emit('null');
   }
+  isMobile(): boolean {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+handleReport() {
+  if (this.isMobile()) {
+    this.downloadAsPdf();
+  } else {
+    window.print(); // ngxPrint will do this anyway
+  }
+}
+
+downloadAsPdf() {
+  const element = document.getElementById('print-section');
+  if (!element) {
+    console.error('print-section not found!');
+    return;
+  }
+
+  const opt:any = {
+    margin:       10, // top, left, bottom, right
+    filename:     `${this.downloadFileName || 'Report'}.pdf`,
+    image:        { type: 'jpeg' as const, quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true }, // scale improves quality
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+  };
+
+  html2pdf().set(opt).from(element).save();
+}
+
 }

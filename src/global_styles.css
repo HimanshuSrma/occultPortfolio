@@ -103,7 +103,7 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .section {
-    padding: 48px 0;
+    padding: 75px 0;
   }
   
   .section-title {
