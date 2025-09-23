@@ -358,4 +358,51 @@ downloadAsPdf() {
   html2pdf().set(opt).from(element).save();
 }
 
+
+
+printSection(sectionId: string): void {
+  const contentToPrint = document.getElementById(sectionId);
+  if (!contentToPrint) {
+    console.error('Print section not found');
+    return;
+  }
+  const styles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]')).map((style) => style.outerHTML).join('\n');
+  const printContents = contentToPrint.innerHTML;
+  const popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+  if (popupWin) {
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          ${styles}
+          <title>Print</title>
+          <style>
+            /* Inject minimal print styles only into the popup */
+            body {
+              font-family: Arial, sans-serif;
+              padding: 20px;
+              margin: 0;
+            }
+
+            @media print {
+              body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+              }
+            }
+          </style>
+        </head>
+        <body onload="window.print(); window.close();">
+          ${printContents}
+        </body>
+      </html>
+    `);
+    popupWin.document.close();
+  } else {
+    alert('Popup blocked! Please allow popups for this site.');
+  }
+}
+
+
+
 }
