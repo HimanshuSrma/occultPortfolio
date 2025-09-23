@@ -6,18 +6,20 @@
       </svg>
       Back to Dashboard
     </button>
-    <button *ngIf="!isMobile()" class="back-btn text-white" printSectionId="print-section" ngxPrint [printTitle]="downloadFileName" [useExistingCss]="true" aria-label="Save Report">
+
+    <!-- *ngIf="!isMobile()" -->
+    <button  class="back-btn text-white" printSectionId="print-section" ngxPrint [printTitle]="downloadFileName" [useExistingCss]="true" aria-label="Save Report">
       <svg class="rotate-270 text-white" width="20" height="20" viewBox="0 0 24 24" fill="none">
         <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
       Save Report
     </button>
-    <button class="back-btn text-white" (click)="downloadAsPdf()" aria-label="Save Report">
+    <!-- <button class="back-btn text-white" (click)="downloadAsPdf()" aria-label="Save Report">
       <svg class="rotate-270 text-white" width="20" height="20" viewBox="0 0 24 24" fill="none">
         <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-      Save Report
-    </button>
+      Save Report as pdf
+    </button> -->
   </div>
 </div>
 
