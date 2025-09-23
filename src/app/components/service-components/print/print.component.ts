@@ -366,6 +366,7 @@ printSection(sectionId: string): void {
     console.error('Print section not found');
     return;
   }
+  const printWindow = window.open('', '_blank');
   const styles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]')).map((style) => style.outerHTML).join('\n');
   const printContents = contentToPrint.innerHTML;
   const popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
