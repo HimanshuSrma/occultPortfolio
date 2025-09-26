@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NumerologyResult, LoShuNumber, excessNumberVastuDoshDirection, vastuLoShuGrid, monthNames, multiYearBlocks, yearlyMonths, readingGuide, reportYears } from '../../../models/numerology.model';
 import { mustExcludePairs } from '../../../../assets/data/data';
 import { NumerologyService } from '../../../services/numerology.service';
@@ -51,7 +51,7 @@ export class PrintComponent implements OnChanges {
   downloadFileName: string = 'report';
 
   
-  constructor(private numerologyService: NumerologyService, private firestoreService: FirestoreService) {
+  constructor(private numerologyService: NumerologyService, private firestoreService: FirestoreService, public http: HttpClient) {
     this.readingGuide = readingGuide;
     this.noteHTML = this.firestoreService?.reports?.numerologyNoteHTML?.html;
   }
@@ -72,13 +72,13 @@ export class PrintComponent implements OnChanges {
 
     const basePY = this.result.personalYear;
     const startYear = dayjs().year();
-    const startMonth0 = dayjs().month(); // 0-based index; Jan = 0 :contentReference[oaicite:1]{index=1}
+    const startMonth = dayjs().month(); // 0-based index; Jan = 0 :contentReference[oaicite:1]{index=1}
     const totalMonths = this.numYears * 12;
 
     for (let i = 0; i < totalMonths; i++) {
-      const monthIdx0 = (startMonth0 + i) % 12;
-      const calMonth = monthIdx0 + 1;
-      const yearOffset = Math.floor((startMonth0 + i) / 12);
+      const monthIdx = (startMonth + i) % 12;
+      const calMonth = monthIdx + 1;
+      const yearOffset = Math.floor((startMonth + i) / 12);
       const calYear = startYear + yearOffset;
 
       const pYearForMonth = ((basePY + yearOffset - 1) % 9) + 1;
@@ -92,7 +92,7 @@ export class PrintComponent implements OnChanges {
       });
     }
 
-    const yearsSpanned = Math.floor((startMonth0 + totalMonths - 1) / 12) + 1;
+    const yearsSpanned = Math.floor((startMonth + totalMonths - 1) / 12) + 1;
 
     for (let y = 0; y < yearsSpanned; y++) {
       const calYear = startYear + y;
@@ -129,8 +129,7 @@ export class PrintComponent implements OnChanges {
       this.setCombination();
     }
 
-    this.missingRemediesMap = await Promise.all(
-      this.result.missingNumbers.map(async (num: any) => {
+    this.missingRemediesMap = await Promise.all(this.result.missingNumbers.map(async (num: any) => {
         const data = (await this.getDataForNumber(num, 'missing')) || {};
         return {
           number: num,
@@ -194,46 +193,20 @@ export class PrintComponent implements OnChanges {
     const lifePath = String(this.result?.lifePath);
     const destiny = String(this.result?.destiny);
     this.repeatedNumbers = await this.processLoShuGridForRepeatedNumbers();
-    this.combinationData = await this.fetchDriverConductorData(
-      lifePath,
-      destiny
-    );
-    const findLuckyNameNo = [
-      ...this.combinationData.luckyNameNumbers,
-      ...this.combinationData.luckyNumbers,
-    ];
-    this.nameIsLucky =
-      this.result.nameNumber == 5
-        ? true
-        : findLuckyNameNo.includes(Number(this.result.nameNumber));
+    this.combinationData = await this.fetchDriverConductorData(lifePath, destiny);
+    const findLuckyNameNo = [...this.combinationData.luckyNameNumbers, ...this.combinationData.luckyNumbers];
+    this.nameIsLucky = this.result.nameNumber == 5 ? true : findLuckyNameNo.includes(Number(this.result.nameNumber));
     // this.nameIsLucky = this.result.nameNumber == 5 ? true : findLuckyNameNo.includes(Number(this.result.nameTotalSum));
-    this.personalYear =
-      this.firestoreService.personalYearData[this.result?.personalYear];
-    this.personalMonth =
-      this.firestoreService.personalMonthData[this.result?.personalMonth];
-    this.personalDay =
-      this.firestoreService.personalDayData[this.result?.personalDay];
-    const fetchNameNumData =
-      this.result.nameTotalSum <= 108
-        ? this.result.nameTotalSum
-        : this.result.nameNumber;
-    this.nameData =
-      this.firestoreService.nameNumberCharacteristics[fetchNameNumData];
+    this.personalYear = this.firestoreService.personalYearData[this.result?.personalYear];
+    this.personalMonth = this.firestoreService.personalMonthData[this.result?.personalMonth];
+    this.personalDay = this.firestoreService.personalDayData[this.result?.personalDay];
+    const fetchNameNumData = this.result.nameTotalSum <= 108 ? this.result.nameTotalSum : this.result.nameNumber;
+    this.nameData = this.firestoreService.nameNumberCharacteristics[fetchNameNumData];
     this.mobileData = this.setMobileData(this.result.mobileNumberPairs);
-    this.mobileNumberTotal = this.numerologyService.calculateMobileSum(
-      this.result.mobileNumber
-    );
-    this.mobileCompound = this.numerologyService.reduceToSingleDigit(
-      this.result.mobileNumber
-    );
-    this.mobileIsLucky = mustExcludePairs.data.every(
-      (excluded: any) =>
-        !this.result.mobileNumberPairs.includes(Number(excluded))
-    );
-    this.nameLettersArr = this.result.name
-      .replace(/\s/g, '')
-      .toUpperCase()
-      .split('');
+    this.mobileNumberTotal = this.numerologyService.calculateMobileSum(this.result.mobileNumber);
+    this.mobileCompound = this.numerologyService.reduceToSingleDigit(this.result.mobileNumber);
+    this.mobileIsLucky = mustExcludePairs.data.every((excluded: any) => !this.result.mobileNumberPairs.includes(Number(excluded)));
+    this.nameLettersArr = this.result.name.replace(/\s/g, '').toUpperCase().split('');
     this.nameLettersData = this.firestoreService.nameLettersData;
     // this.fetchNameLettersData(this.nameLettersArr);
   }
@@ -404,6 +377,24 @@ printSection(sectionId: string): void {
   }
 }
 
+downloadReport(){
+  // call api on 3000port to generate pdf and download
+  this.http.post('http://localhost:3000/preview', { userDetails: this.result, requestDataType: this.requestDataType, timeReportLenthInYears: this.numYears  })
+  .subscribe((response: any) => {
+    const blob = new Blob([response], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a'); 
+    a.href = url;
+    a.download = `${this.downloadFileName || 'Report'}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, error => {
+    console.error('Error generating PDF:', error);
+    alert('Failed to generate PDF. Please try again later.');
+  });
+}
 
 
 }

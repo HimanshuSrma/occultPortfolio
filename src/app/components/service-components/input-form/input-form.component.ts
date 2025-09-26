@@ -53,12 +53,12 @@ export class InputFormComponent {
   //   userGoal: "NA NA NA NA NA NA NA NA",
   // };
 
-  fullName = "Himmanshu sharma";
-  dateOfBirth = "2000-06-05";
-  gender = "male";
-  email = "name@domain.com";
-  mobile = "9876543210";
-  userGoal = "NA NA NA NA NA NA NA NA";
+  // fullName = "Himmanshu sharma";
+  // dateOfBirth = "2000-06-05";
+  // gender = "male";
+  // email = "name@domain.com";
+  // mobile = "9876543210";
+  // userGoal = "NA NA NA NA NA NA NA NA";
 
   @Output() calculationDone = new EventEmitter<any>();
 
