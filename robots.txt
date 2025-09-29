@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://occult-portfolio.vercel.app/sitemap.xml
