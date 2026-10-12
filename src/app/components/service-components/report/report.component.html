@@ -21,7 +21,10 @@
       <app-input-form *ngIf="!numerologyResult" (calculationDone)="handleCalculation($event)"></app-input-form>
       <app-services-grid *ngIf="numerologyResult && requestDataType == null"
         (requestDataType)="handleRequestedData($event)"></app-services-grid>
-      <app-result *ngIf="numerologyResult && requestDataType != null" [requestDataType]="requestDataType"
+      <app-prakriti-quiz *ngIf="numerologyResult && requestDataType === 'prakriti'" (backToServices)="handleRequestedData('null')"></app-prakriti-quiz>
+      <app-planet-quiz *ngIf="numerologyResult && requestDataType === 'planet-quiz'" (backToServices)="handleRequestedData('null')"></app-planet-quiz>
+      <app-element-quiz *ngIf="numerologyResult && requestDataType === 'element-quiz'" (backToServices)="handleRequestedData('null')"></app-element-quiz>
+      <app-result *ngIf="numerologyResult && requestDataType != null && requestDataType !== 'prakriti' && requestDataType !== 'planet-quiz' && requestDataType !== 'element-quiz'" [requestDataType]="requestDataType"
         (requestDataInResult)="handleRequestedData($event)" [result]="numerologyResult"></app-result>
       <!-- <app-result-display *ngIf="numerologyResult" [result]="numerologyResult"></app-result-display> -->
 

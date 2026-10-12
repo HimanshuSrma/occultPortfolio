@@ -10,11 +10,13 @@ import { NumerologyService } from '../../../services/numerology.service';
 import { NumerologyResult } from '../../../models/numerology.model';
 import { FirestoreService } from '../../../services/firestore.service';
 import { InputFormComponent } from '../input-form/input-form.component';
-// import { driverConductordata, numbersRemedy, personalYearData, personalMonthData, personalDayData, nameNumberCharacteristics, englishMobilePairsMeaningArr, hindiMobilePairsMeaningArr, mustExcludePairs, repetitionOfNumbers, nameLettersData} from '../assets/data/data';
+import { PrakritiQuizComponent } from '../prakriti-quiz/prakriti-quiz.component';
+import { PlanetQuizComponent } from '../planet-quiz/planet-quiz.component';
+import { ElementQuizComponent } from '../element-quiz/element-quiz.component';
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule, InputFormComponent, ResultComponent, LoaderComponent, ServicesGridComponent],
+  imports: [CommonModule, InputFormComponent, ResultComponent, LoaderComponent, ServicesGridComponent, PrakritiQuizComponent, PlanetQuizComponent, ElementQuizComponent],
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
 })
@@ -42,9 +44,9 @@ export class ReportComponent {
 
   
   ngOnInit(): void {
-    // if (isPlatformBrowser(this.platformId)) {
-    //   window.addEventListener('beforeunload', this.beforeUnloadListener);
-    // }
+    if (isPlatformBrowser(this.platformId)) {
+      this.restoreState();
+    }
     setTimeout(() => {
       this.uploadAll();
       this.fetchAllData();
@@ -70,8 +72,9 @@ export class ReportComponent {
   }
 
   handleRequestedData(data: any) {
-    data = data == 'null' ? null : data
+    data = data == 'null' ? null : data;
     this.requestDataType = data;
+    this.saveState();
     console.log('Received from child:', data);
   }
 
@@ -114,10 +117,46 @@ export class ReportComponent {
       data.gender,
       data.mobile
     );
+    this.saveState();
   }
 
   reset() {
     this.numerologyResult = null;
+    this.requestDataType = null;
+    this.clearState();
+  }
+
+  private saveState(): void {
+    try {
+      if (this.numerologyResult) {
+        sessionStorage.setItem('numerologyResult', JSON.stringify(this.numerologyResult));
+      }
+      if (this.requestDataType != null) {
+        sessionStorage.setItem('requestDataType', this.requestDataType);
+      } else {
+        sessionStorage.removeItem('requestDataType');
+      }
+    } catch (_) {}
+  }
+
+  private restoreState(): void {
+    try {
+      const saved = sessionStorage.getItem('numerologyResult');
+      if (saved) {
+        this.numerologyResult = JSON.parse(saved);
+      }
+      const savedType = sessionStorage.getItem('requestDataType');
+      if (savedType) {
+        this.requestDataType = savedType;
+      }
+    } catch (_) {}
+  }
+
+  private clearState(): void {
+    try {
+      sessionStorage.removeItem('numerologyResult');
+      sessionStorage.removeItem('requestDataType');
+    } catch (_) {}
   }
 
   beforeUnloadListener = (event: BeforeUnloadEvent) => {

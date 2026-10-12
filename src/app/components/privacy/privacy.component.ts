@@ -158,7 +158,7 @@ import { Component } from '@angular/core';
             <div class="contact-info">
               <p>📧 Email: himmanshusharma45&#64;gmail.com</p>
               <p>📞 Phone: +91 78359 12569</p>
-              <p>📍Nobel Enclave, Maruti Udyog, Sector 18, Gurugram, Haryana 122015</p>
+              <p>📍Plot No. 76, Behind Medanta Hospital, Medicity, Sector 38, Gurugram, Haryana 122018</p>
             </div>
           </div>
         </div>

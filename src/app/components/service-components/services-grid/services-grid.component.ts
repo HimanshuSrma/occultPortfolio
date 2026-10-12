@@ -136,6 +136,30 @@ export class ServicesGridComponent {
     //   gradient: 'linear-gradient(135deg, rgba(251, 146, 60, 0.3), rgba(251, 146, 60, 0.1))'
     // },
     {
+      id: 'prakriti',
+      title: 'Prakriti (Guna) Quiz',
+      description: 'Discover your dominant Guna — Sattva, Rajas, or Tamas — through 25 insightful questions',
+      icon: '🕉️',
+      route: '/prakriti-quiz',
+      gradient: 'linear-gradient(135deg, rgba(74, 222, 128, 0.3), rgba(245, 158, 11, 0.2))'
+    },
+    {
+      id: 'planet-quiz',
+      title: 'Planets Influence Quiz',
+      description: 'Discover which planets influence your personality the most through 12 insightful questions',
+      icon: '🪐',
+      route: '/planet-quiz',
+      gradient: 'linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(99, 102, 241, 0.2))'
+    },
+    {
+      id: 'element-quiz',
+      title: 'Five Elements Quiz',
+      description: 'Discover which of the five elements — Air, Fire, Earth, Space, or Water — dominates your personality',
+      icon: '🌊',
+      route: '/element-quiz',
+      gradient: 'linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(96, 165, 250, 0.2))'
+    },
+    {
       id: 'full-report',
       title: 'Download Full Report',
       description: 'Get your complete numerological analysis in a beautifully formatted PDF document',

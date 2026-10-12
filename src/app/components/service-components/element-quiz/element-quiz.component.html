@@ -1,0 +1,149 @@
+<div class="element-container">
+  <!-- Header -->
+  <div class="quiz-header fade-in">
+    <button class="back-button" (click)="goBack()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back
+    </button>
+
+    <h1 class="quiz-title">
+      <span class="gradient-text">{{ language === 'en' ? 'Five Elements Quiz' : 'पाँच तत्व क्विज़' }}</span>
+    </h1>
+    <p class="quiz-subtitle">
+      {{ language === 'en' ? 'Discover which element dominates your personality' : 'जानें कौन-सा तत्व आपके व्यक्तित्व पर हावी है' }}
+    </p>
+
+    <button class="lang-toggle" (click)="toggleLanguage()">
+      {{ language === 'en' ? 'हिन्दी' : 'English' }}
+    </button>
+  </div>
+
+  <!-- Quiz Form -->
+  <div *ngIf="!showResult" class="quiz-form">
+    <!-- Progress Bar -->
+    <div class="progress-section">
+      <div class="progress-info">
+        <span>{{ answeredCount }} / 25 {{ language === 'en' ? 'answered' : 'उत्तर दिए' }}</span>
+        <span>{{ progressPercent }}%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="progressPercent"></div>
+      </div>
+    </div>
+
+    <!-- Questions -->
+    <div *ngFor="let q of questions; let i = index" class="question-card"
+         [class.answered]="answers[q.id]"
+         [style.animation-delay]="(i * 0.05) + 's'">
+      <div class="question-number">Q{{ q.id }}</div>
+      <h3 class="question-text">
+        {{ language === 'en' ? q.questionEn : q.questionHi }}
+      </h3>
+      <div class="options-group">
+        <label *ngFor="let opt of q.options"
+               class="option-label"
+               [class.selected]="answers[q.id] === opt.element"
+               [style.borderColor]="answers[q.id] === opt.element ? labels[opt.element].color : ''"
+               [style.background]="answers[q.id] === opt.element ? labels[opt.element].color + '22' : ''">
+          <input type="radio"
+                 [name]="'q' + q.id"
+                 [value]="opt.element"
+                 (change)="selectAnswer(q.id, opt.element)"
+                 [checked]="answers[q.id] === opt.element">
+          <span class="radio-custom"
+                [style.borderColor]="answers[q.id] === opt.element ? labels[opt.element].color : ''"></span>
+          <span class="element-icon">{{ labels[opt.element].icon }}</span>
+          <span class="option-text">{{ language === 'en' ? opt.textEn : opt.textHi }}</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-section">
+      <button class="submit-btn"
+              [disabled]="!allAnswered"
+              (click)="submitQuiz()">
+        {{ language === 'en' ? 'See My Element Balance' : 'मेरा तत्व संतुलन देखें' }}
+      </button>
+      <p *ngIf="!allAnswered" class="submit-hint">
+        {{ language === 'en' ? 'Please answer all 25 questions' : 'कृपया सभी 25 प्रश्नों के उत्तर दें' }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div *ngIf="showResult" class="result-section fade-in">
+    <h2 class="result-title">
+      {{ language === 'en' ? 'Your Element Balance Analysis' : 'आपका तत्व संतुलन विश्लेषण' }}
+    </h2>
+
+    <!-- Pie Chart -->
+    <div class="chart-container">
+      <svg viewBox="0 0 300 300" class="pie-chart">
+        <path *ngFor="let slice of getPieSlices()"
+              [attr.d]="getSlicePath(slice.startAngle, slice.endAngle)"
+              [attr.fill]="slice.color"
+              stroke="#1a1a2e"
+              stroke-width="2"/>
+        <text *ngFor="let slice of getPieSlices()"
+              [attr.x]="getLabelPos(slice.startAngle, slice.endAngle).x"
+              [attr.y]="getLabelPos(slice.startAngle, slice.endAngle).y"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              fill="#fff"
+              font-size="11"
+              font-weight="bold">
+          {{ scores[slice.element] }}%
+        </text>
+      </svg>
+    </div>
+
+    <!-- Legend -->
+    <div class="chart-legend">
+      <div *ngFor="let entry of sortedElements" class="legend-item">
+        <span class="legend-dot" [style.background]="labels[entry.element].color"></span>
+        <span class="legend-icon">{{ labels[entry.element].icon }}</span>
+        <span class="legend-label">
+          {{ language === 'en' ? labels[entry.element].en : labels[entry.element].hi }}
+          ({{ labels[entry.element].keyword }})
+        </span>
+        <span class="legend-value">{{ entry.score }}%</span>
+      </div>
+    </div>
+
+    <!-- Dominant Element -->
+    <div class="dominant-section">
+      <div class="dominant-icon">{{ labels[dominantElement].icon }}</div>
+      <h3 class="dominant-title">
+        {{ language === 'en' ? 'Dominant Element' : 'प्रमुख तत्व' }}:
+        {{ language === 'en' ? labels[dominantElement].en : labels[dominantElement].hi }}
+        ({{ labels[dominantElement].keyword }})
+      </h3>
+    </div>
+
+    <!-- Score Bars -->
+    <div class="score-bars">
+      <div *ngFor="let entry of sortedElements" class="score-bar-item">
+        <div class="bar-header">
+          <span>{{ labels[entry.element].icon }} {{ language === 'en' ? labels[entry.element].en : labels[entry.element].hi }}</span>
+          <span>{{ entry.score }}%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" [style.width.%]="entry.score" [style.background]="labels[entry.element].color"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retake -->
+    <div class="retake-section">
+      <button class="retake-btn" (click)="retakeQuiz()">
+        {{ language === 'en' ? 'Retake Quiz' : 'दोबारा करें' }}
+      </button>
+      <button class="back-btn-result" (click)="goBack()">
+        {{ language === 'en' ? 'Back to Services' : 'सेवाओं पर वापस' }}
+      </button>
+    </div>
+  </div>
+</div>
